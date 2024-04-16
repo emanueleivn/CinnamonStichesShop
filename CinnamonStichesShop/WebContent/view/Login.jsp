@@ -23,5 +23,9 @@
  <p><a href="Registrazione.jsp">Non sei registrato? Registrati ora.</a>
  </fieldset>
 </form>
+<br><br>
+
+<%@include file ="footer.jsp" %>
+
 </body>
 </html>

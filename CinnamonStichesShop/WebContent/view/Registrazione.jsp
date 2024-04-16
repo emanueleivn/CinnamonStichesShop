@@ -25,5 +25,7 @@
 	<input type="submit" value="Crea account">
 </fieldset>
 </form>
+
+<%@include file ="footer.jsp" %>
 </body>
 </html>
