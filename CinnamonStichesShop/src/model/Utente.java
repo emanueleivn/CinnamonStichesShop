@@ -27,11 +27,11 @@ public class Utente {
 		this.email = email;
 	}
 
-	public String getPasswordHash() {
+	public String getPassword() {
 		return password;
 	}
 
-	public void setPasswordHash(String password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
@@ -71,27 +71,27 @@ public class Utente {
 		return città;
 	}
 
-	public void setPaese(String città) {
+	public void setCittà(String città) {
 		this.città = città;
 	}
 
-	public boolean isAdmin() {
+	public boolean getIsAdmin() {
 		return isAdmin;
 	}
 
-	public void setAdmin(boolean isAdmin) {
+	public void setIsAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
 	
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
+	public boolean equals(Object obj) {
+		if (this == obj) {
 			return true;
 		}
-		if (o == null || getClass() != o.getClass()) {
+		if (obj == null || getClass() != obj.getClass()) {
 			return false;
 		}
-		Utente utente = (Utente) o;
+		Utente utente = (Utente) obj;
 		return     idUtente == utente.idUtente 
 				&& isAdmin == utente.isAdmin 
 				&& email.equalsIgnoreCase(utente.email)
@@ -102,5 +102,6 @@ public class Utente {
 				&& cap.equalsIgnoreCase(utente.cap)
 				&& città.equalsIgnoreCase(utente.città);
 	}
+
 
 }

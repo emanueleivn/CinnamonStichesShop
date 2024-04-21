@@ -1,7 +1,6 @@
 package model;
 
 public class TagliaProdotto {
-	private int idProdotto;
 	private String taglia;
 
 	public TagliaProdotto() {
@@ -10,16 +9,23 @@ public class TagliaProdotto {
 	public TagliaProdotto(String taglia) {
 		this.taglia=taglia;
 	}
-	public int getIdProdotto() {
-		return idProdotto;
-	}
+	
 	public String getTaglia() {
 		return taglia;
 	}
-	public void setIdProdotto(int idProdotto) {
-		this.idProdotto = idProdotto;
-	}
 	public void setTaglia(String taglia) {
 		this.taglia = taglia;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null || getClass() != obj.getClass()) {
+			return false;
+		}
+		TagliaProdotto t= (TagliaProdotto)obj;
+		
+		return t.equals(t.taglia);
 	}
 }
