@@ -1,6 +1,8 @@
 package control;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,9 +14,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
        
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8697651045570564505L;
+
+	/**
      * @see HttpServlet#HttpServlet()
      */
     public LoginServlet() {
@@ -34,7 +40,10 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String error="e";
+		request.setAttribute("errors", error);
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/LoginServlet.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }

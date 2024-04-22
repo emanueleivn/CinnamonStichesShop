@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Registrazione</title>
 </head>
 <body>
-<form action="../RegistraUtenteServlet" method="post">
+<form action="/RegistraUtenteServlet" method="post">
 <fieldset>
 <legend>Dati Profilo</legend>
 	Nome:<br><input type="text" name="nome" placeholder="Nome" required><br><br>
@@ -25,7 +25,11 @@
 	<input type="submit" value="Crea account">
 </fieldset>
 </form>
-
+<% String errori = (String)request.getAttribute("errors");
+	if (errori != null){
+%>		
+	Errori: <%=errori %>
+<%} %>	
 <%@include file ="footer.jsp" %>
 </body>
 </html>

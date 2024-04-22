@@ -11,6 +11,9 @@ public class Utente {
 	private String città;
 	private boolean isAdmin;
 
+	public Utente() {
+	}
+
 	public int getId() {
 		return idUtente;
 	}
@@ -82,7 +85,7 @@ public class Utente {
 	public void setIsAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -92,16 +95,10 @@ public class Utente {
 			return false;
 		}
 		Utente utente = (Utente) obj;
-		return     idUtente == utente.idUtente 
-				&& isAdmin == utente.isAdmin 
-				&& email.equalsIgnoreCase(utente.email)
-				&& password.equalsIgnoreCase(utente.password)
-				&& nome.equalsIgnoreCase(utente.nome)
-				&& cognome.equalsIgnoreCase(utente.cognome) 
-				&& via.equalsIgnoreCase(utente.via)
-				&& cap.equalsIgnoreCase(utente.cap)
-				&& città.equalsIgnoreCase(utente.città);
+		return idUtente == utente.idUtente && isAdmin == utente.isAdmin && email.equalsIgnoreCase(utente.email)
+				&& password.equalsIgnoreCase(utente.password) && nome.equalsIgnoreCase(utente.nome)
+				&& cognome.equalsIgnoreCase(utente.cognome) && via.equalsIgnoreCase(utente.via)
+				&& cap.equalsIgnoreCase(utente.cap) && città.equalsIgnoreCase(utente.città);
 	}
-
 
 }

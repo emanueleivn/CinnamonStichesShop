@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login Page</title>
 </head>
 <body>
 
-<form action="../LoginServlet" method="post">
+<form action="LoginServlet" method="post">
 <fieldset>
 <legend>Login</legend>
 
