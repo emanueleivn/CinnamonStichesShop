@@ -1,4 +1,4 @@
-package control;
+package control.Utente;
 
 import java.io.IOException;
 
@@ -31,15 +31,6 @@ public class RegistraUtenteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 /*to do controllo parametri*/
 		 String email = request.getParameter("email");
          String password = request.getParameter("password");
          String nome = request.getParameter("nome");
@@ -61,12 +52,20 @@ public class RegistraUtenteServlet extends HttpServlet {
           * alla pagina di registrazione visualzizzando gli errori
           */
          request.setAttribute("errors", nome+cognome+email+password+via+cap+città);
-         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/Registrazione.jsp");
+         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/registrazione.jsp");
  		 dispatcher.forward(request, response);
  		 
          HttpSession session= request.getSession();
          session.setAttribute("utente", ut);
          session.setAttribute("Loggato", true);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 /*to do controllo parametri*/
+			doGet(request,response);
          
          /*ritorna controllo pagina principale*/
          

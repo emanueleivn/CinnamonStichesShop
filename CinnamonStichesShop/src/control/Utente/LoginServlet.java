@@ -1,4 +1,4 @@
-package control;
+package control.Utente;
 
 import java.io.IOException;
 
@@ -10,35 +10,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class RegistrazioneServlet
+ * Servlet implementation class LoginServlet
  */
-@WebServlet("/RegistrazioneServlet")
-public class RegistrazioneServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+@WebServlet(name="LoginServlet",value="/LoginServlet")
+public class LoginServlet extends HttpServlet {
        
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8697651045570564505L;
+
+	/**
      * @see HttpServlet#HttpServlet()
      */
-    public RegistrazioneServlet() {
+    public LoginServlet() {
         super();
-        
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		RequestDispatcher rd = request.getRequestDispatcher("/view/Registrazione.jsp");
-		rd.forward(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at:").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String error="e";
+		request.setAttribute("errors", error);
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/login.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }

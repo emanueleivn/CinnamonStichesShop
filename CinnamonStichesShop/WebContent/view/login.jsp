@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form action="LoginServlet" method="post">
+<form action="../LoginServlet" method="POST">
 <fieldset>
 <legend>Login</legend>
 
@@ -16,13 +16,15 @@
 <input type="text" name="user" placeholder="username" required="required"/><br>
 <label>Password:</label><br>
 <input type="password" id="password" name="pass" placeholder="password" required="required"/><br><br>
-  <input type="submit" value="LOGIN"/>
+  <input type="submit" value="LOGIN">
+ 
  <%if(request.getAttribute("error") != null) {%>
     <p style='color: red;'>Username o password non corretti!</p>
  <% } %>
- <p><a href="Registrazione.jsp">Non sei registrato? Registrati ora.</a>
- </fieldset>
-</form>
+ <p><a href="registrazione.jsp">Non sei registrato? Registrati ora.</a>
+ 
+</fieldset>
+ </form>
 <br><br>
 
 <%@include file ="footer.jsp" %>

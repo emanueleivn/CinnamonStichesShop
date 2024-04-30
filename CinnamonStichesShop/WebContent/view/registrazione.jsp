@@ -7,7 +7,7 @@
 <title>Registrazione</title>
 </head>
 <body>
-<form action="/RegistraUtenteServlet" method="post">
+<form action="RegistraUtenteServlet" method="POST">
 <fieldset>
 <legend>Dati Profilo</legend>
 	Nome:<br><input type="text" name="nome" placeholder="Nome" required><br><br>
