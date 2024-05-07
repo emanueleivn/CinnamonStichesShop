@@ -51,8 +51,9 @@ public class RegistraUtenteServlet extends HttpServlet {
          /*se passano tutti i controlli salvo l'utente, altrimenti rimando
           * alla pagina di registrazione visualzizzando gli errori
           */
+         System.out.println(nome+cognome+email+password+via+cap+città);
          request.setAttribute("errors", nome+cognome+email+password+via+cap+città);
-         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/registrazione.jsp");
+         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/registrazione.jsp");
  		 dispatcher.forward(request, response);
  		 
          HttpSession session= request.getSession();

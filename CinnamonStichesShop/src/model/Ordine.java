@@ -10,7 +10,7 @@ enum STATUS {
 
 public class Ordine {
 	private static int codiceOrdine = 0;
-	private String id;
+	private int idCliente;
 	private LocalDateTime data;
 	private String stato;
 	private String indirizzoSpedizione;
@@ -26,15 +26,23 @@ public class Ordine {
 		stato = STATUS.PREPARAZIONE.toString();
 	}
 
-	public Ordine(ArrayList<Prodotto> pList, String codiceCliente, String via, String cap, String paese) {
+	public Ordine(ArrayList<Prodotto> pList, int id, String via, String cap, String paese) {
 		codiceOrdine++;
 		prodotti.addAll(pList);
 		tot = getTot();
 		quantitàProdotti = prodotti.size();
 		stato = STATUS.PREPARAZIONE.toString();
 		setIndirizzoSpedizione(via, cap, paese);
-		id = codiceCliente;
+		idCliente = id;
 		data = LocalDateTime.now();
+	}
+
+	public int getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
 	}
 
 	public int getCodiceOrdine() {
@@ -43,10 +51,6 @@ public class Ordine {
 
 	public LocalDateTime getData() {
 		return data;
-	}
-
-	public String getId() {
-		return id;
 	}
 
 	public String getIndirizzoSpedizione() {
@@ -71,10 +75,6 @@ public class Ordine {
 
 	public void setData(LocalDateTime data) {
 		this.data = data;
-	}
-
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	public void setIndirizzoSpedizione(String via, String cap, String paese) {

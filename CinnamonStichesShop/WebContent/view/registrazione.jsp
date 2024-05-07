@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,14 +7,15 @@
 <title>Registrazione</title>
 </head>
 <body>
-<form action="RegistraUtenteServlet" method="POST">
+<%@include file ="header.jsp" %>
+<form action="${pageContext.request.contextPath}/RegistraUtenteServlet" method="POST">
 <fieldset>
 <legend>Dati Profilo</legend>
 	Nome:<br><input type="text" name="nome" placeholder="Nome" required><br><br>
 	Cognome:<br><input type="text" name="cognome" placeholder="Cognome" required><br><br>
 	Indirizzo:<br><input type="text" name="via" placeholder="Via" > &nbsp 
 	Cap:<input type="text" name="cap" placeholder="Cap" > &nbsp
-	Citt‡:<input type="text" name="city" placeholder="Citt‡"><br><br>
+	Citt√†:<input type="text" name="city" placeholder="Citt√†"><br><br>
 </fieldset>
 <fieldset>
 <legend>Dati Utente</legend>

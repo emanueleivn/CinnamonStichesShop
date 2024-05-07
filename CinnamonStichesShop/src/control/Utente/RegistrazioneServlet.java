@@ -29,7 +29,7 @@ public class RegistrazioneServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		RequestDispatcher rd = request.getRequestDispatcher("/registrazione.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/view/registrazione.jsp");
 		rd.forward(request, response);
 	}
 

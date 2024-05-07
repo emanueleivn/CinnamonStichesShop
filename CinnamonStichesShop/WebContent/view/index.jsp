@@ -7,7 +7,11 @@
 <title>CinnamonStichesShop</title>
 <link rel="icon" href="../images/icone/logo.ico">
 </head>
+<%@include file="header.jsp"%>
 <body>
-
+<p>
+Questa è la home page di prova
+</p>
 </body>
+<%@include file="footer.jsp"%>
 </html>
