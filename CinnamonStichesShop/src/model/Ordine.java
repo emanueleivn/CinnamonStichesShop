@@ -1,17 +1,16 @@
 package model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 enum STATUS {
 	SPEDITO, CONSEGNATO, PREPARAZIONE;
 }
 
 public class Ordine {
-	private static int codiceOrdine = 0;
+	private int codiceOrdine;
 	private int idCliente;
-	private LocalDateTime data;
+	private LocalDate data;
 	private String stato;
 	private String indirizzoSpedizione;
 	private int quantitàProdotti;
@@ -19,22 +18,21 @@ public class Ordine {
 	private ArrayList<Prodotto> prodotti;
 
 	public Ordine() {
-		codiceOrdine++;
 		prodotti = new ArrayList<>();
 		tot = 0;
 		quantitàProdotti = 0;
 		stato = STATUS.PREPARAZIONE.toString();
+		data=LocalDate.now();
 	}
 
 	public Ordine(ArrayList<Prodotto> pList, int id, String via, String cap, String paese) {
-		codiceOrdine++;
 		prodotti.addAll(pList);
 		tot = getTot();
 		quantitàProdotti = prodotti.size();
 		stato = STATUS.PREPARAZIONE.toString();
 		setIndirizzoSpedizione(via, cap, paese);
 		idCliente = id;
-		data = LocalDateTime.now();
+		data = LocalDate.now();
 	}
 
 	public int getIdCliente() {
@@ -49,7 +47,7 @@ public class Ordine {
 		return codiceOrdine;
 	}
 
-	public LocalDateTime getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
@@ -73,15 +71,18 @@ public class Ordine {
 		return prodotti;
 	}
 
-	public void setData(LocalDateTime data) {
-		this.data = data;
+	public void setData(LocalDate data) {
+		this.data = LocalDate.now();
 	}
 
 	public void setIndirizzoSpedizione(String via, String cap, String paese) {
 		String indirizzoSpedizione = componiIndirizzo(via, cap, paese);
 		this.indirizzoSpedizione = indirizzoSpedizione;
 	}
-
+	
+	public void setIndirizzoSpedizione(String indirizzo) {
+		this.indirizzoSpedizione = indirizzo;
+	}
 	public void setQuantitàProdotti(int quantitàProdotti) {
 		this.quantitàProdotti = quantitàProdotti;
 	}
@@ -97,7 +98,9 @@ public class Ordine {
 	public void setProdotti(ArrayList<Prodotto> prodotti) {
 		this.prodotti = prodotti;
 	}
-
+	public void setCodiceOrdine(int id) {
+		codiceOrdine = id;
+	}
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -117,9 +120,9 @@ public class Ordine {
 	}
 
 	private String controllaStato() {
-		if (data.plusDays(2).isEqual(LocalDateTime.now()))
+		if (data.plusDays(2).isEqual(LocalDate.now()))
 			return STATUS.SPEDITO.toString();
-		if (data.plusDays(6).isEqual(LocalDateTime.now()))
+		if (data.plusDays(6).isEqual(LocalDate.now()))
 			return STATUS.CONSEGNATO.toString();
 		else
 			return stato;

@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Carrello {
 	private int id;
+	private int idCliente;
 	private ArrayList<Prodotto> prodottiCarrello;
 	public Carrello() {
 		prodottiCarrello= new ArrayList<>();
@@ -14,6 +15,12 @@ public class Carrello {
 	}
 	public ArrayList<Prodotto> getProdottiCarrello() {
 		return prodottiCarrello;
+	}
+	public int getIdCliente() {
+		return idCliente;
+	}
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
 	}
 	public void setId(int id) {
 		this.id = id;

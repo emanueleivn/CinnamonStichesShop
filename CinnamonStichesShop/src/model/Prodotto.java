@@ -9,11 +9,18 @@ public class Prodotto {
 	private String descrizione;
 	private float costo;
 	private List<ImmagineProdotto> immagini;
-	private List<TagliaProdotto> taglie;
+	private List<String> taglie;
+	private int idCategoria;
 	
 	public Prodotto() {
 		immagini=new ArrayList<>();
 		taglie = new ArrayList<>();
+	}
+	public int getIdCategoria() {
+		return idCategoria;
+	}
+	public void setIdCategoria(int idCategoria) {
+		this.idCategoria = idCategoria;
 	}
 	public int getCodice() {
 		return codice;
@@ -30,7 +37,7 @@ public class Prodotto {
 	public List<ImmagineProdotto> getImmagini() {
 		return immagini;
 	}
-	public List<TagliaProdotto> getTaglie() {
+	public List<String> getTaglie() {
 		return taglie;
 	}
 	public void setCodice(int codice) {
@@ -48,25 +55,13 @@ public class Prodotto {
 	public void setImmagini(List<ImmagineProdotto> immagini) {
 		this.immagini = immagini;
 	}
-	public void setTaglie(List<TagliaProdotto> taglie) {
+	public void setTaglie(List<String> taglie) {
 		this.taglie = taglie;
 	}
-	public void aggiungiImmagine(String path) {
-		ImmagineProdotto im = new ImmagineProdotto(path);
-		im.setIdProdotto(codice);
-		immagini.add(im);
-	}
-	public void aggiungiTaglia(TagliaProdotto t) {
+	public void aggiungiTaglia(String t) {
 		taglie.add(t);
 	}
-	public void removeImmagine(String path) {
-		if(!immagini.isEmpty()) {
-			ImmagineProdotto im = new ImmagineProdotto(path);
-			im.setIdProdotto(codice);
-			immagini.remove(im);
-			}
-	}
-	public void removeTaglia(TagliaProdotto t) {
+	public void removeTaglia(String t) {
 		if(!taglie.isEmpty())
 			taglie.remove(t);
 	}

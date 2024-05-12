@@ -1,22 +1,27 @@
 package model;
 
 public class ImmagineProdotto {
+	private int id;
 	private int idProdotto;
-	private String path;
+	private byte[] immagine;
 	
 	public ImmagineProdotto() {
 	}
-	public ImmagineProdotto(String path) {
-		this.path=path;
+	
+	public int getId() {
+		return id;
+	}
+	public byte[] getImmagine() {
+		return immagine;
+	}
+	public void setImmagine(byte[] immagine) {
+		this.immagine = immagine;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	public int getIdProdotto() {
 		return idProdotto;
-	}
-	public String getPath() {
-		return path;
-	}
-	public void setPath(String path) {
-		this.path = path;
 	}
 	public void setIdProdotto(int idProdotto) {
 		this.idProdotto = idProdotto;
@@ -31,7 +36,6 @@ public class ImmagineProdotto {
 		}
 		ImmagineProdotto img= (ImmagineProdotto)obj;
 		
-		return idProdotto==img.idProdotto
-			&& path.equals(img.path);
+		return idProdotto==img.idProdotto;
 	}
  }

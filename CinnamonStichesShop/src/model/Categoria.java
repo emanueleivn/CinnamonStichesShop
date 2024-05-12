@@ -3,8 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class Categoria {
-	private int id;
-	private static int c=0;
+	private int idCategoria;
 	private String nome;
 	private String descrizione;
 	private ArrayList<Prodotto> listaP;
@@ -13,22 +12,15 @@ public class Categoria {
 		listaP=new ArrayList<Prodotto>();
 	}
 
-	public Categoria(String nome, String descrizione) {
-		id=c++;
-		this.nome = nome;
-		this.descrizione = descrizione;
-		listaP=new ArrayList<Prodotto>();
-	}
-
 	public String getDescrizione() {
 		return descrizione;
 	}
 
 	public int getId() {
-		return id;
+		return idCategoria;
 	}
 	public void setId(int id) {
-		this.id = id;
+		this.idCategoria = id;
 	}
 
 	public String getNome() {
@@ -64,7 +56,7 @@ public class Categoria {
 			return false;
 		}
 		Categoria c = (Categoria)obj;
-		return id==c.id;
+		return idCategoria==c.idCategoria;
 	}
 
 }
