@@ -6,14 +6,14 @@ import java.util.List;
 public class Carrello {
 	private int id;
 	private int idCliente;
-	private ArrayList<Prodotto> prodottiCarrello;
+	private ArrayList<ProdottoOrdinato> prodottiCarrello;
 	public Carrello() {
 		prodottiCarrello= new ArrayList<>();
 	}
 	public int getId() {
 		return id;
 	}
-	public ArrayList<Prodotto> getProdottiCarrello() {
+	public ArrayList<ProdottoOrdinato> getProdottiCarrello() {
 		return prodottiCarrello;
 	}
 	public int getIdCliente() {
@@ -25,18 +25,18 @@ public class Carrello {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public void setProdottiCarrello(ArrayList<Prodotto> prodottiCarrello) {
+	public void setProdottiCarrello(ArrayList<ProdottoOrdinato> prodottiCarrello) {
 		this.prodottiCarrello = prodottiCarrello;
 	}
-	public void aggiungiAlCarrello(Prodotto p) {
+	public void aggiungiAlCarrello(ProdottoOrdinato p) {
 		prodottiCarrello.add(p);
 	}
-	public void rimuoviDalCarrello(Prodotto p) {
+	public void rimuoviDalCarrello(ProdottoOrdinato p) {
 		prodottiCarrello.remove(p);
 	}
 	public float getTotale() {
 		float tot=0;
-		for(Prodotto p : prodottiCarrello) {
+		for(ProdottoOrdinato p : prodottiCarrello) {
 			tot+=p.getCosto();
 		}
 		return tot;

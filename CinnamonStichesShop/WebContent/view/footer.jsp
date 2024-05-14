@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="initial-scale=1,width=device-width">
 <title>CinnamonStichesShop</title>
 <link rel="stylesheet" type="text/css" href="../css/title.css">
 </head>

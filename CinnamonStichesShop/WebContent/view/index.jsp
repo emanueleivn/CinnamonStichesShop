@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="TF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="initial-scale=1,width=device-width">
 <title>CinnamonStichesShop</title>
 <link rel="icon" href="../images/icone/logo.ico">
 </head>

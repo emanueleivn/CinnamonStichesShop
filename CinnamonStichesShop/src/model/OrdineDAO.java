@@ -38,10 +38,10 @@ public class OrdineDAO {
 			rs.next();
 			int id = rs.getInt(1);
 			o.setCodiceOrdine(id);
-			for (Prodotto p : carrello.getProdottiCarrello()) {
+			for (ProdottoOrdinato p : carrello.getProdottiCarrello()) {
 				o.aggiungiProdotto(p);
 				PreparedStatement ps2 = connection
-						.prepareStatement("INSERT INTO Contiene (codiceOrdine,codiceProdotto) VALUES(?,?)");
+						.prepareStatement("INSERT INTO Contiene (codiceOrdine,idProdotto) VALUES(?,?)");
 				ps2.setInt(1, o.getCodiceOrdine());
 				ps2.setInt(2, p.getCodice());
 				if (ps2.executeUpdate() != 1) {
@@ -125,7 +125,7 @@ public class OrdineDAO {
 			ps1.setInt(1, codice);
 			ResultSet rs1 = ps1.executeQuery();
 			while(rs1.next()) {
-				ProdottoDAO p = new ProdottoDAO(ds);
+				ProdottoOrdinatoDAO p = new ProdottoOrdinatoDAO(ds);
 				ordine.aggiungiProdotto(p.doRetrieveById(rs1.getInt("codiceProdotto")));
 			}
 

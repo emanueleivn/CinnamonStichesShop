@@ -19,17 +19,22 @@
 			<img alt="Home Page" src="${pageContext.request.contextPath}/images/icone/logo.ico" />
 			</a>
 		</div>
-		<nav>
+		<nav id="barra">
 			<ul>
 				<li><a href="${pageContext.request.contextPath}/IndexServlet"><strong>HOME</strong></a></li>
 				<li><a href="${pageContext.request.contextPath}/IndexServlet"><strong>CATALOGO</strong></a></li>
 			</ul>
 		</nav>
-		<div class="login">
+		<div class="navigazione">
 			<nav>
-				<a href="${pageContext.request.contextPath}/LoginServlet"> 
-				<img alt="Utente Login" src="${pageContext.request.contextPath}/images/icone/iconautente.ico" />
+				<ul>
+				<li><a href="${pageContext.request.contextPath}/LoginServlet"> 
+				<img alt="Utente Login" src="${pageContext.request.contextPath}/images/icone/icona_utente.ico" />
+				</a></li>
+				<li><a href="${pageContext.request.contextPath}/LoginServlet">
+				<img alt="Utente Carrello" src="${pageContext.request.contextPath}/images/icone/carrello.ico" />
 				</a>
+				</ul>
 			</nav>
 		</div>
 
