@@ -96,36 +96,6 @@ public class ImmagineProdottoDAO {
 		}
 	}
 
-	public synchronized ArrayList<ImmagineProdotto> doRetrieveAll() throws SQLException {
-		Connection cn = null;
-		PreparedStatement ps = null;
-		ArrayList<ImmagineProdotto> immagini = new ArrayList<ImmagineProdotto>();
-		try {
-			cn = ds.getConnection();
-			ps = cn.prepareStatement("SELECT * FROM ImmagineProdotto ORDER BY ?");
-			ps.setString(1, "id");
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				ImmagineProdotto img = new ImmagineProdotto();
-				img.setId(rs.getInt("id"));
-				img.setIdProdotto(rs.getInt("idProdotto"));
-				img.setImmagine(rs.getBytes("immagine"));
-				immagini.add(img);
-			}
-		} catch (Exception e) {
-			System.out.println("Erroredao:" + e.getMessage());
-		} finally {
-			try {
-				if (ps != null)
-					ps.close();
-			} finally {
-				if (cn != null)
-					cn.close();
-			}
-		}
-		return immagini;
-	}
-
 	public synchronized ArrayList<ImmagineProdotto> doRetriveById(int id) throws SQLException {
 		Connection cn = null;
 		PreparedStatement ps = null;

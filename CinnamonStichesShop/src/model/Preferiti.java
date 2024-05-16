@@ -4,27 +4,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Preferiti {
-	private ArrayList<Prodotto> prodottiPreferiti;
+	private ArrayList<Integer> prodottiPreferiti;
 	private int id;
+	private int idCliente;
 
 	public Preferiti() {
 		prodottiPreferiti = new ArrayList<>();
 	}
-	public Preferiti(int id) {
-		prodottiPreferiti = new ArrayList<>();
-		this.id=id;
-	}
 	public int getId() {
 		return id;
 	}
-	public ArrayList<Prodotto> getProdottiPreferiti() {
+	public int getIdCliente() {
+		return idCliente;
+	}
+	public ArrayList<Integer> getProdottiPreferiti() {
 		return prodottiPreferiti;
 	}
-	public void aggiungiPref(Prodotto p) {
-		prodottiPreferiti.add(p);
+	public void setId(int id) {
+		this.id = id;
 	}
-	public void rimuoviPref(Prodotto p) {
-		prodottiPreferiti.remove(p);
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
+	public void setProdottiPreferiti(ArrayList<Integer> prodottiPreferiti) {
+		this.prodottiPreferiti = prodottiPreferiti;
+	}
+	public void aggiungiPref(int idP) {
+		prodottiPreferiti.add(idP);
+	}
+	public void rimuoviPref(int idP) {
+		prodottiPreferiti.remove(idP);
 	}
 	@Override
 	public boolean equals(Object obj) {

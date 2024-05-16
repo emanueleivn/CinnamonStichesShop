@@ -11,6 +11,7 @@ public class Prodotto {
 	private List<ImmagineProdotto> immagini;
 	private List<String> taglie;
 	private int idCategoria;
+	private String isDisp;
 	
 	public Prodotto() {
 		immagini=new ArrayList<>();
@@ -39,6 +40,8 @@ public class Prodotto {
 	}
 	public List<String> getTaglie() {
 		return taglie;
+	}public String getIsDisp() {
+		return isDisp;
 	}
 	public void setCodice(int codice) {
 		this.codice = codice;
@@ -58,12 +61,9 @@ public class Prodotto {
 	public void setTaglie(List<String> taglie) {
 		this.taglie = taglie;
 	}
-	public void aggiungiTaglia(String t) {
-		taglie.add(t);
+	public void setIsDisp(String isDisp) {
+		this.isDisp = isDisp;
 	}
-	public void removeTaglia(String t) {
-		if(!taglie.isEmpty())
-			taglie.remove(t);
-	}
+	
 
 }

@@ -22,6 +22,7 @@
 		<nav id="barra">
 			<ul>
 				<li><a href="${pageContext.request.contextPath}/IndexServlet"><strong>HOME</strong></a></li>
+				<li><a href="${pageContext.request.contextPath}/IndexServlet"><strong>PROFILO</strong></a></li>
 				<li><a href="${pageContext.request.contextPath}/IndexServlet"><strong>CATALOGO</strong></a></li>
 			</ul>
 		</nav>

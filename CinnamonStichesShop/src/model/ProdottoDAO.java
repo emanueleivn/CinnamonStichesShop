@@ -14,14 +14,15 @@ public class ProdottoDAO {
 		this.ds = ds;
 	}
 
+	
+
 	public synchronized void doSave(Prodotto prodotto) throws SQLException {
 		Connection connection = null;
 		PreparedStatement ps = null;
 		byte[] bt = null;
 		try {
 			connection = ds.getConnection();
-			ps = connection.prepareStatement(
-					"INSERT INTO prodotto (costo, descrizione, idCategoria) VALUES (?, ?, ?)",
+			ps = connection.prepareStatement("INSERT INTO prodotto (costo, descrizione, idCategoria) VALUES (?, ?, ?)",
 					PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setFloat(1, prodotto.getCosto());
 			ps.setString(2, prodotto.getDescrizione());
@@ -51,7 +52,7 @@ public class ProdottoDAO {
 		PreparedStatement ps = null;
 		try {
 			connection = ds.getConnection();
-			ps = connection.prepareStatement("DELETE FROM prodotto WHERE codice = ?");
+			ps = connection.prepareStatement("UPDATE prodotto SET isDisponibile = false  WHERE codice = ?");
 			ps.setInt(1, codice);
 			if (ps.executeUpdate() != 1) {
 				throw new Exception("Errore eliminazione prodotto");
@@ -103,7 +104,7 @@ public class ProdottoDAO {
 		ArrayList<Prodotto> prodotti = new ArrayList<>();
 		try {
 			connection = ds.getConnection();
-			ps = connection.prepareStatement("SELECT * FROM prodotto ORDER BY codice");
+			ps = connection.prepareStatement("SELECT * FROM prodotto WHERE isDisponibile=true ORDER BY codice");
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Prodotto prodotto = new Prodotto();
@@ -111,7 +112,8 @@ public class ProdottoDAO {
 				prodotto.setCosto(rs.getFloat("costo"));
 				prodotto.setDescrizione(rs.getString("descrizione"));
 				prodotto.setIdCategoria(rs.getInt("idCategoria"));
-				prodotto.setImmagini(doRetrieveImmagine(rs.getInt("codice")));
+				ImmagineProdottoDAO im = new ImmagineProdottoDAO(ds);
+				prodotto.setImmagini(im.doRetriveByIdProdotto(rs.getInt("codice")));
 				prodotti.add(prodotto);
 			}
 		} catch (Exception e) {
@@ -143,7 +145,8 @@ public class ProdottoDAO {
 				prodotto.setCosto(rs.getFloat("costo"));
 				prodotto.setDescrizione(rs.getString("descrizione"));
 				prodotto.setIdCategoria(rs.getInt("idCategoria"));
-				prodotto.setImmagini(doRetrieveImmagine(codice));
+				ImmagineProdottoDAO im = new ImmagineProdottoDAO(ds);
+				prodotto.setImmagini(im.doRetriveByIdProdotto(codice));
 			}
 		} catch (Exception e) {
 			System.out.println("Errore: " + e.getMessage());
@@ -157,36 +160,5 @@ public class ProdottoDAO {
 			}
 		}
 		return prodotto;
-	}
-
-	private synchronized ArrayList<ImmagineProdotto> doRetrieveImmagine(int idProdotto)
-			throws SQLException {
-		Connection connection = null;
-		PreparedStatement ps = null;
-		ArrayList<ImmagineProdotto> immagini = new ArrayList<>();
-		try {
-			connection = ds.getConnection();
-			ps = connection.prepareStatement("SELECT * FROM immaginiProdotto WHERE idProdotto = ?");
-			ps.setInt(1, idProdotto);
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				ImmagineProdotto immagine = new ImmagineProdotto();
-				immagine.setId(rs.getInt("id"));
-				immagine.setIdProdotto(rs.getInt("idProdotto"));
-				immagine.setImmagine(rs.getBytes("immagine"));
-				immagini.add(immagine);
-			}
-		} catch (Exception e) {
-			System.out.println("Errore: " + e.getMessage());
-		} finally {
-			try {
-				if (ps != null)
-					ps.close();
-			} finally {
-				if (connection != null)
-					connection.close();
-			}
-		}
-		return immagini;
 	}
 }
