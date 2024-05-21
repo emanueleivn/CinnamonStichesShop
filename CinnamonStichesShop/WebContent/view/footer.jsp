@@ -4,18 +4,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="initial-scale=1,width=device-width">
-<title>CinnamonStichesShop</title>
-<link rel="stylesheet" type="text/css" href="../css/title.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cinnamon Stitches Shop</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
 </head>
-<body><br>
-<h5><em>Cinnamon Stiches Shop</em></h5>
-<ul>
-<li><strong>Social pages</strong> <br>
-	 <a href="https://www.instagram.com/cinnamon.stitches_?igsh=MTV6ZmVzN3dqbHlibA==" target="_blank"><img src = "${pageContext.request.contextPath}/images/social/instagram.ico" alt="Link ad instagram"></a>
-     <a href="https://www.tiktok.com/@cinnamon.stitches_?_t=8lZaGkLrpA1&_r=1" target="_blank"><img src = "${pageContext.request.contextPath}/images/social/tiktok.ico" alt="Link a tiktok"></a>
-<li> <strong>Contact us</strong> <br>
-	<p>Email : emailProva@gmail.com</p>
-</ul>
+<body>
+    <footer>
+        <h5>Cinnamon Stitches Shop<sup>&copy;</sup></h5>
+        <div id="footer-content">
+            <div class="social-links">
+                <a href="https://www.instagram.com/cinnamon.stitches_?igsh=MTV6ZmVzN3dqbHlibA==" target="_blank">
+                    <img src="${pageContext.request.contextPath}/images/social/instagram.ico" alt="Instagram">
+                </a>
+                <a href="https://www.tiktok.com/@cinnamon.stitches_?_t=8lZaGkLrpA1&_r=1" target="_blank">
+                    <img src="${pageContext.request.contextPath}/images/social/tiktok.ico" alt="TikTok">
+                </a>
+            </div>
+            <div class="contact">
+                <b>Contact us</b>
+                <p><strong>Email</strong>: <a href="mailto:emailFittizia@gmail.com">fakeEmail@gmail.com</a><br>
+                <strong>Tel.</strong>: +39 333 333 3333
+                </p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

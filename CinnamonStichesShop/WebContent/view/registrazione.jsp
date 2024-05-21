@@ -5,33 +5,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="initial-scale=1,width=device-width">
+<link rel ="stylesheet" type="text/css" href = "${pageContext.request.contextPath}/css/page.css">
+
 <title>Registrazione</title>
 </head>
+<%@include file="header.jsp"%>
 <body>
-<%@include file ="header.jsp" %>
-<form action="${pageContext.request.contextPath}/RegistraUtenteServlet" method="POST">
-<fieldset>
-<legend>Dati Profilo</legend>
-	Nome:<br><input type="text" name="nome" placeholder="Nome" required><br><br>
-	Cognome:<br><input type="text" name="cognome" placeholder="Cognome" required><br><br>
-	Indirizzo:<br><input type="text" name="via" placeholder="Via" > &nbsp 
-	Cap:<input type="text" name="cap" placeholder="Cap" > &nbsp
-	Città:<input type="text" name="city" placeholder="Città"><br><br>
-</fieldset>
-<fieldset>
-<legend>Dati Utente</legend>
-	Username: <br><input type="text" name="username" placeholder="Username" required><br><br>
-	E-mail: <br><input type="email" name="email" placeholder="E-mail" required><br><br>
-	Password: <br><input type="password" name="password" placeholder="Password" required><br><br>
-	Ripeti Password: <br><input type="password" name="ripetipassword" placeholder="Ripeti password" required><br><br>
-	<input type="submit" value="Crea account">
-</fieldset>
+<div id="log-reg">
+<form action="../RegistraUtenteServlet" method="POST">
+	<h4>Dati Profilo</h4>
+	<label>Nome</label><input id="inp" type="text" name="nome" placeholder="Nome" required>
+	<label>Cognome</label><input id="inp" type="text" name="cognome" placeholder="Cognome" required>
+	<label>Indirizzo</label><input id="inp" type="text" name="via" placeholder="Via" >
+	<label>Cap   </label><input id="inp" type="text" name="cap" placeholder="Cap" >
+	<label>Città</label> <input id="inp" type="text" name="city" placeholder="Città">
+	<h4>Dati Utente</h4>
+	<label>Username </label><input id="inp" type="text" name="username" placeholder="Username" required>
+	<label>Email</label><input id="inp" type="email" name="email" placeholder="E-mail" required>
+	<label>Password</label><input id="inp" type="password" name="password" placeholder="Password" required>
+	<label>Ripeti Password</label><input id="inp" type="password" name="ripetipassword" placeholder="Ripeti password" required>
+	<input id="sub" type="submit" value="Crea account"><br><br>
 </form>
-<% String errori = (String)request.getAttribute("errors");
-	if (errori != null){
-%>		
-	Errori: <%=errori %>
-<%} %>	
+</div>
 <%@include file ="footer.jsp" %>
 </body>
+
 </html>
