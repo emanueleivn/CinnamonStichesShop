@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="it">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,13 +16,13 @@
             <a href="${pageContext.request.contextPath}/IndexServlet">
                 <img src="${pageContext.request.contextPath}/images/icone/logo.ico" alt="Logo">
             </a>
-            <div class="logo-text">Cinnamon Stitches</div>
+            <div class="logo-text"> <a href="${pageContext.request.contextPath}/IndexServlet">Cinnamon Stitches</a></div>
         </div>
         <ul id="nav-list">
         	<li class="menu-item"><a href="${pageContext.request.contextPath}/IndexServlet">Home</a></li>
             <li class="menu-item"><a href="${pageContext.request.contextPath}/LoginServlet">
                 Profilo</a></li>
-            <li class="menu-item"><a href="${pageContext.request.contextPath}/LoginServlet">
+            <li class="menu-item"><a href="${pageContext.request.contextPath}/Carrello">
             Carrello</a>
             </li>
             <li class="menu-item"><a href="${pageContext.request.contextPath}/LoginServlet">

@@ -32,10 +32,11 @@ body {
     border-radius: 5px;
 }
 
-.navbar .logo-text {
+.navbar .logo-text a {
     color: white;
     font-size: 24px;
     font-weight: bold;
+    text-decoration: none;
 }
 
 .navbar ul {
