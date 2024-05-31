@@ -23,6 +23,7 @@
                 <th>Prodotto</th>
                 <th>Prezzo</th>
                 <th>Rimuovi</th>
+                <th>Quantità</th>
                 <th>Totale</th>
             </tr>
             <%
@@ -30,7 +31,7 @@
                 if (cart == null || cart.isEmpty()) {
             %>
                 <tr>
-                    <td colspan="4" style="text-align: center">Nessun prodotto inserito</td>
+                    <td colspan="5" style="text-align: center">Nessun prodotto inserito</td>
                 </tr>
             <%
                 } else {

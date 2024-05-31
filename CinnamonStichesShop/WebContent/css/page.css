@@ -38,7 +38,7 @@ body {
 	font-family: 'Montserrat', sans-serif;
 }
 
-#log-reg #inp {
+#log-reg .inp {
 	background-color: white;
 	border-style: none;
 	padding: 8px;
