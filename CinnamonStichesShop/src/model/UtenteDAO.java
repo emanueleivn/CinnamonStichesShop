@@ -20,7 +20,7 @@ public class UtenteDAO {
 		try {
 			connection = ds.getConnection();
 			ps = connection.prepareStatement(
-					"INSERT INTO utente (nome, cognome, email, password, via, cap, citta) VALUES (?, ?, ?, ?, ?, ?, ?)",
+					"INSERT INTO utente (nome, cognome, email, pass, via, cap, citta, username) VALUES (?, ?, ?, ?, ?, ?, ?,?)",
 					PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setString(1, utente.getNome());
 			ps.setString(2, utente.getCognome());
@@ -29,6 +29,7 @@ public class UtenteDAO {
 			ps.setString(5, utente.getVia());
 			ps.setString(6, utente.getCap());
 			ps.setString(7, utente.getCittà());
+			ps.setString(8, utente.getUsername());
 
 			if (ps.executeUpdate() != 1)
 				throw new Exception("Errore INSERT INTO");
@@ -56,7 +57,7 @@ public class UtenteDAO {
 		PreparedStatement ps = null;
 		try {
 			connection = ds.getConnection();
-			ps = connection.prepareStatement("DELETE FROM utente WHERE idUtente = ?");
+			ps = connection.prepareStatement("DELETE FROM utente WHERE cod_ut = ?");
 			ps.setInt(1, idUtente);
 			if (ps.executeUpdate() != 1) {
 				throw new Exception("Errore eliminazione utente");
@@ -80,7 +81,7 @@ public class UtenteDAO {
 		try {
 			connection = ds.getConnection();
 			ps = connection.prepareStatement(
-					"UPDATE utente SET nome = ?, cognome = ?, email = ?, password = ?, via = ?, cap = ?, citta = ? WHERE idUtente = ?");
+					"UPDATE utente SET nome = ?, cognome = ?, email = ?, pass = ?, via = ?, cap = ?, citta = ? WHERE cod_ut = ?");
 			ps.setString(1, utente.getNome());
 			ps.setString(2, utente.getCognome());
 			ps.setString(3, utente.getEmail());
@@ -120,11 +121,12 @@ public class UtenteDAO {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Utente utente = new Utente();
-				utente.setId(rs.getInt("idUtente"));
+				utente.setId(rs.getInt("cod_ut"));
 				utente.setNome(rs.getString("nome"));
 				utente.setCognome(rs.getString("cognome"));
+				utente.setUsername(rs.getString("username"));
 				utente.setEmail(rs.getString("email"));
-				utente.setPassword(rs.getString("password"));
+				utente.setPassword(rs.getString("pass"));
 				utente.setVia(rs.getString("via"));
 				utente.setCap(rs.getString("cap"));
 				utente.setCittà(rs.getString("citta"));
@@ -156,11 +158,12 @@ public class UtenteDAO {
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				utente = new Utente();
-				utente.setId(rs.getInt("idUtente"));
+				utente.setId(rs.getInt("cod_ut"));
 				utente.setNome(rs.getString("nome"));
 				utente.setCognome(rs.getString("cognome"));
+				utente.setUsername(rs.getString("username"));
 				utente.setEmail(rs.getString("email"));
-				utente.setPassword(rs.getString("password"));
+				utente.setPassword(rs.getString("pass"));
 				utente.setVia(rs.getString("via"));
 				utente.setCap(rs.getString("cap"));
 				utente.setCittà(rs.getString("citta"));
@@ -180,28 +183,81 @@ public class UtenteDAO {
 		return utente;
 	}
 
-	public synchronized Utente doRetrieveByEmailPassword(String email, String password) throws SQLException {
+	public synchronized Utente doRetrieveByUserPassword(String username, String password) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		Utente utente = null;
 		try {
 			con = ds.getConnection();
-			ps = con.prepareStatement("SELECT * FROM " + "utente WHERE email=? AND passwordHash=?");
-			ps.setString(1, email);
+			ps = con.prepareStatement("SELECT * FROM " + "utente WHERE username=? AND pass=?");
+			ps.setString(1, username);
 			ps.setString(2, password);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				utente = new Utente();
-				utente.setId(rs.getInt("idUtente"));
+				utente.setId(rs.getInt("cod_ut"));
 				utente.setNome(rs.getString("nome"));
 				utente.setCognome(rs.getString("cognome"));
+				utente.setUsername(rs.getString("username"));
 				utente.setEmail(rs.getString("email"));
-				utente.setPassword(rs.getString("password"));
+				utente.setPassword(rs.getString("pass"));
 				utente.setVia(rs.getString("via"));
 				utente.setCap(rs.getString("cap"));
 				utente.setCittà(rs.getString("citta"));
 				utente.setIsAdmin(rs.getBoolean("isAdmin"));
 
+			}
+		} catch (Exception e) {
+			System.out.println("Errore: " + e.getMessage());
+		} finally {
+			try {
+				if (ps != null)
+					ps.close();
+			} finally {
+				if (con != null)
+					con.close();
+			}
+		}
+		return utente;
+
+	}
+
+	public synchronized Utente checkingUser(String username) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		Utente utente = null;
+		try {
+			con = ds.getConnection();
+			ps = con.prepareStatement("SELECT * FROM " + "utente WHERE username=?");
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				utente = new Utente();
+			}
+		} catch (Exception e) {
+			System.out.println("Errore: " + e.getMessage());
+		} finally {
+			try {
+				if (ps != null)
+					ps.close();
+			} finally {
+				if (con != null)
+					con.close();
+			}
+		}
+		return utente;
+	}
+	public synchronized Utente checkingEmail(String email) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		Utente utente = null;
+		try {
+			con = ds.getConnection();
+			ps = con.prepareStatement("SELECT * FROM " + "utente WHERE email=?");
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				utente = new Utente();
 			}
 		} catch (Exception e) {
 			System.out.println("Errore: " + e.getMessage());

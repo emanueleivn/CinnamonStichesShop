@@ -11,10 +11,9 @@ public class Prodotto {
 	private List<ImmagineProdotto> immagini;
 	private List<String> taglie;
 	private int idCategoria;
-	private String isDisp;
+	private boolean isDisp;
 	
 	public Prodotto() {
-		immagini=new ArrayList<>();
 		taglie = new ArrayList<>();
 	}
 	public int getIdCategoria() {
@@ -35,14 +34,19 @@ public class Prodotto {
 	public String getDescrizione() {
 		return descrizione;
 	}
+
+	public List<String> getTaglie() {
+		return taglie;
+	}public boolean getIsDisp() {
+		return isDisp;
+	}
 	public List<ImmagineProdotto> getImmagini() {
 		return immagini;
 	}
-	public List<String> getTaglie() {
-		return taglie;
-	}public String getIsDisp() {
-		return isDisp;
-	}
+	public void setImmagini(List<ImmagineProdotto> immagini) {
+		this.immagini = immagini;
+	} 
+	
 	public void setCodice(int codice) {
 		this.codice = codice;
 	}
@@ -55,13 +59,11 @@ public class Prodotto {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
-	public void setImmagini(List<ImmagineProdotto> immagini) {
-		this.immagini = immagini;
-	}
+	
 	public void setTaglie(List<String> taglie) {
 		this.taglie = taglie;
 	}
-	public void setIsDisp(String isDisp) {
+	public void setIsDisp(boolean isDisp) {
 		this.isDisp = isDisp;
 	}
 	

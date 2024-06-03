@@ -1,26 +1,26 @@
-package general;
+package control.Utente;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class IndexServlet
+ * Servlet implementation class LogoutServlet
  */
-@WebServlet(name="IndexServlet", value="/HomePage")
-public class IndexServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+@WebServlet("/Logout")
+public class LogoutServlet extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8697651045570564505L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public IndexServlet() {
+	public LogoutServlet() {
 		super();
 	}
 
@@ -30,21 +30,13 @@ public class IndexServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		if (session.isNew()) {
-			session.setAttribute("isLogged", false);
-		}
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/view/index.jsp");
-		dispatcher.forward(request, response);
+		request.getSession().removeAttribute("isLogged");
+		response.sendRedirect(request.getContextPath() + "/view/index.jsp");
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		doGet(request, response);
 	}
 

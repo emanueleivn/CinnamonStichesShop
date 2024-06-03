@@ -18,6 +18,9 @@
             <p>Handmade with love</p>
         </div>
     </div>
+    <section class="prodotti-shuffle">
+    	<h1></h1>
+    </section>
  <div id="aboutproduct">
     <div class="product-feature" data-aos="fade-up">
         <img id="im1" src="${pageContext.request.contextPath}/images/indeximages/handmade.jpg" alt="Image 1">

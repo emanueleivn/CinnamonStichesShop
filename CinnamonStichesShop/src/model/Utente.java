@@ -5,6 +5,7 @@ public class Utente {
 	private String nome;
 	private String cognome;
 	private String email;
+	private String username;
 	private String password;
 	private String via;
 	private String cap;
@@ -22,8 +23,16 @@ public class Utente {
 		idUtente = id;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
 	public String getEmail() {
 		return email;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public void setEmail(String email) {

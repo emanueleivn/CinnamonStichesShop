@@ -6,17 +6,12 @@
 <html>
 <head>
     <title>Carrello</title>
-     <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="${pageContext.request.contextPath}/images/icone/logo.ico">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css">
 </head>
+<%@include file="header.jsp" %>
 <body>
-	<%@include file="header.jsp" %>
-	
-	
-	
 	<div class="cart-content">
     <table class="carrello-table">
             <tr>
