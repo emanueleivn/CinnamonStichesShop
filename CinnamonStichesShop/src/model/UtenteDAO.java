@@ -52,13 +52,13 @@ public class UtenteDAO {
 		}
 	}
 
-	public synchronized void doDelete(int idUtente) throws SQLException {
+	public synchronized void doDelete(String username) throws SQLException {
 		Connection connection = null;
 		PreparedStatement ps = null;
 		try {
 			connection = ds.getConnection();
-			ps = connection.prepareStatement("DELETE FROM utente WHERE cod_ut = ?");
-			ps.setInt(1, idUtente);
+			ps = connection.prepareStatement("DELETE FROM utente WHERE username = ?");
+			ps.setString(1, username);
 			if (ps.executeUpdate() != 1) {
 				throw new Exception("Errore eliminazione utente");
 			}
@@ -81,7 +81,7 @@ public class UtenteDAO {
 		try {
 			connection = ds.getConnection();
 			ps = connection.prepareStatement(
-					"UPDATE utente SET nome = ?, cognome = ?, email = ?, pass = ?, via = ?, cap = ?, citta = ? WHERE cod_ut = ?");
+					"UPDATE utente SET nome = ?, cognome = ?, email = ?, pass = ?, via = ?, cap = ?, citta = ? WHERE username = ?");
 			ps.setString(1, utente.getNome());
 			ps.setString(2, utente.getCognome());
 			ps.setString(3, utente.getEmail());
@@ -89,7 +89,7 @@ public class UtenteDAO {
 			ps.setString(5, utente.getVia());
 			ps.setString(6, utente.getCap());
 			ps.setString(7, utente.getCittà());
-			ps.setInt(8, utente.getId());
+			ps.setString(8, utente.getUsername());
 
 			if (ps.executeUpdate() != 1) {
 				throw new Exception("Errore aggiornamento utente");

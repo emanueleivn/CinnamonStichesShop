@@ -51,8 +51,10 @@ public class LoginServlet extends HttpServlet {
             if (user != null) {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("isLogged", true);
+                session.setAttribute("isAdmin", user.getIsAdmin());           
                 session.setAttribute("user", user);
-                response.sendRedirect(request.getContextPath() + "/view/index.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/view/index.jsp");
+                dispatcher.forward(request, response);
             } else {
                 String errorMessage = "Utente non valido!";
                 request.setAttribute("errorMessage", errorMessage);

@@ -22,27 +22,27 @@
                 <th>Totale</th>
             </tr>
             <%
-                List<Prodotto> cart = (List<Prodotto>) session.getAttribute("cart");
-                if (cart == null || cart.isEmpty()) {
+                Carrello cart = (Carrello) session.getAttribute("carrello");
+                if (cart == null || cart.getNumeroProdotti()==0) {
             %>
                 <tr>
                     <td colspan="5" style="text-align: center">Nessun prodotto inserito</td>
                 </tr>
             <%
                 } else {
-                    for (Prodotto product : cart) {
-                        double total = product.getCosto();
+                    for(ProdottoCarrello product : cart.getProdottiCarrello()){
             %>
                 <tr>
-                    <td><%= product.getNome() %></td>
-                    <td><%= product.getCosto() %></td>
+                    <td><%=product.getProdotto().getNome()%></td>
+                    <td><%=product.getProdotto().getCosto()%></td>
                     <td>
                         <form action="removeProduct" method="post">
-                            <input type="hidden" name="productId" value="<%= product.getCodice() %>">
+                            <input type="hidden" name="productId" value="<%= product.getProdotto().getCodice() %>">
                             <button type="submit">Rimuovi</button>
                         </form>
                     </td>
-                    <td><%= total %></td>
+                    <td><%=product.getQuantita()%></td>
+                    <td><%= product.getTot()%></td>
                 </tr>
             <%
                     }

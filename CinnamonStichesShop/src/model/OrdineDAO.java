@@ -25,7 +25,7 @@ public class OrdineDAO {
 		try {
 			connection = ds.getConnection();
 			ps = connection.prepareStatement(
-					"INSERT INTO ordine " + "(data, stato, quantità, totale, idCliente,indirizzoSpedizione)"
+					"INSERT INTO ordine " + "(data, stato, quantità, tot, utente_cod,ind_spedizione)"
 							+ " VALUES (" + Date.valueOf(LocalDate.now()) + ", ?, ?, ?, ?,?)");
 			ps.setString(1, o.getStato());
 			ps.setInt(2, carrello.getNumeroProdotti());
@@ -38,12 +38,12 @@ public class OrdineDAO {
 			rs.next();
 			int id = rs.getInt(1);
 			o.setCodiceOrdine(id);
-			for (Prodotto p : carrello.getProdottiCarrello()) {
+			for (ProdottoCarrello p : carrello.getProdottiCarrello()) {
 				o.aggiungiProdotto(p);
 				PreparedStatement ps2 = connection
 						.prepareStatement("INSERT INTO Contiene (codiceOrdine,idProdotto) VALUES(?,?)");
 				ps2.setInt(1, o.getCodiceOrdine());
-				ps2.setInt(2, p.getCodice());
+				ps2.setInt(2, p.getProdotto().getCodice());
 				if (ps2.executeUpdate() != 1) {
 					throw new Exception("INSERT error.");
 				}
@@ -78,14 +78,14 @@ public class OrdineDAO {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Ordine ordine = new Ordine();
-				ordine.setCodiceOrdine(rs.getInt("codiceOrdine"));
+				ordine.setCodiceOrdine(rs.getInt("codice"));
 				Date d = rs.getDate("data");
 				ordine.setData(d.toLocalDate());
 				ordine.setStato(rs.getString("stato"));
-				ordine.setIndirizzoSpedizione(rs.getString("indirizzoSpedizione"));
+				ordine.setIndirizzoSpedizione(rs.getString("ind_spedizione"));
 				ordine.setQuantitàProdotti(rs.getInt("quantità"));
-				ordine.setTot(rs.getFloat("totale"));
-				ordine.setIdCliente(rs.getInt("idUtente"));
+				ordine.setTot(rs.getFloat("tot"));
+				ordine.setIdCliente(rs.getInt("utente_cod"));
 				ordini.add(ordine);
 			}
 		} catch (Exception e) {
@@ -109,24 +109,26 @@ public class OrdineDAO {
 		Ordine ordine=null;
 		try {
 			connection = ds.getConnection();
-			ps = connection.prepareStatement("SELECT * FROM ordine WHERE codiceOrdine = ?");
+			ps = connection.prepareStatement("SELECT * FROM ordine WHERE codice = ?");
 			ps.setInt(1, codice);
 			ResultSet rs = ps.executeQuery();
 			ordine = new Ordine();
-			ordine.setCodiceOrdine(rs.getInt("codiceOrdine"));
+			ordine.setCodiceOrdine(rs.getInt("codice"));
 			ordine.setData(rs.getDate("data").toLocalDate());
 			ordine.setStato(rs.getString("stato"));
 			ordine.setQuantitàProdotti(rs.getInt("quantità"));
-			ordine.setIndirizzoSpedizione(rs.getString("indirizzoSpedizione"));
+			ordine.setIndirizzoSpedizione(rs.getString("ind_spedizione"));
 			ordine.setQuantitàProdotti(rs.getInt("quantità"));
-			ordine.setTot(rs.getFloat("totale"));
-			ordine.setIdCliente(rs.getInt("codiceCliente"));
-			ps1 = connection.prepareStatement("SELECT codiceProdotto FROM Contiene WHERE codiceOrdine = ?");
+			ordine.setTot(rs.getFloat("tot"));
+			ordine.setIdCliente(rs.getInt("utente_cod"));
+			ps1 = connection.prepareStatement("SELECT prodotto_codice,quantità FROM Contiene WHERE ordine_codice = ?");
 			ps1.setInt(1, codice);
 			ResultSet rs1 = ps1.executeQuery();
 			while(rs1.next()) {
-				ProdottoDAO p = new ProdottoDAO(ds);
-				ordine.aggiungiProdotto(p.doRetrieveById(rs1.getInt("codiceProdotto")));
+				ProdottoDAO pDao = new ProdottoDAO(ds);
+				Prodotto p = pDao.doRetrieveById(rs1.getInt("prodotto_codice"));
+				ProdottoCarrello pc = new ProdottoCarrello(pDao.doRetrieveById(rs1.getInt("codiceProdotto")),rs1.getInt("quantità"));
+				ordine.aggiungiProdotto(pc);
 			}
 
 		} catch (Exception e) {
@@ -152,7 +154,7 @@ public class OrdineDAO {
 		ArrayList<Ordine> ordini = new ArrayList<>();
 		try {
 			connection = ds.getConnection();
-			ps = connection.prepareStatement("SELECT * FROM ordine WHERE codiceCliente = ?");
+			ps = connection.prepareStatement("SELECT * FROM ordine WHERE utente_cod = ?");
 			ps.setInt(1, idUtente);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {

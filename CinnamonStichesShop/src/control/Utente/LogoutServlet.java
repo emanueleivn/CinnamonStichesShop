@@ -30,8 +30,8 @@ public class LogoutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getSession().removeAttribute("isLogged");
-		response.sendRedirect(request.getContextPath() + "/view/index.jsp");
+		request.getSession().invalidate();
+		response.sendRedirect(request.getContextPath() + "/HomePage");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

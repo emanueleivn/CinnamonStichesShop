@@ -15,7 +15,7 @@ public class Ordine {
 	private String indirizzoSpedizione;
 	private int quantitàProdotti;
 	private float tot;
-	private ArrayList<Prodotto> prodotti;
+	private ArrayList<ProdottoCarrello> prodotti;
 
 	public Ordine() {
 		prodotti = new ArrayList<>();
@@ -25,7 +25,7 @@ public class Ordine {
 		data=LocalDate.now();
 	}
 
-	public Ordine(ArrayList<Prodotto> pList, int id, String via, String cap, String paese) {
+	public Ordine(ArrayList<ProdottoCarrello> pList, int id, String via, String cap, String paese) {
 		prodotti.addAll(pList);
 		tot = getTot();
 		quantitàProdotti = prodotti.size();
@@ -67,7 +67,7 @@ public class Ordine {
 		return tot;
 	}
 
-	public ArrayList<Prodotto> getProdotti() {
+	public ArrayList<ProdottoCarrello> getProdotti() {
 		return prodotti;
 	}
 
@@ -95,7 +95,7 @@ public class Ordine {
 		this.tot = tot;
 	}
 
-	public void setProdotti(ArrayList<Prodotto> prodotti) {
+	public void setProdotti(ArrayList<ProdottoCarrello> prodotti) {
 		this.prodotti = prodotti;
 	}
 	public void setCodiceOrdine(int id) {
@@ -113,7 +113,7 @@ public class Ordine {
 		return codiceOrdine == o.getCodiceOrdine();
 	}
 
-	public void aggiungiProdotto(Prodotto p) {
+	public void aggiungiProdotto(ProdottoCarrello p) {
 		prodotti.add(p);
 		quantitàProdotti++;
 		tot = calcolaTotale();
@@ -132,8 +132,8 @@ public class Ordine {
 	private float calcolaTotale() {
 		if (prodotti.isEmpty())
 			return 0;
-		for (Prodotto p : prodotti)
-			tot += p.getCosto();
+		for (ProdottoCarrello p : prodotti)
+			tot += p.getTot();
 		return tot;
 	}
 

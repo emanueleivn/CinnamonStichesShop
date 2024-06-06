@@ -6,45 +6,64 @@ import java.util.List;
 public class Carrello {
 	private int id;
 	private int idCliente;
-	private ArrayList<Prodotto> prodottiCarrello;
+	private ArrayList<ProdottoCarrello> prodottiCarrello;
+
 	public Carrello() {
-		prodottiCarrello= new ArrayList<>();
+		prodottiCarrello = new ArrayList<>();
 	}
+
 	public int getId() {
 		return id;
 	}
-	public ArrayList<Prodotto> getProdottiCarrello() {
+
+	public ArrayList<ProdottoCarrello> getProdottiCarrello() {
 		return prodottiCarrello;
 	}
+
 	public int getIdCliente() {
 		return idCliente;
 	}
+
 	public void setIdCliente(int idCliente) {
 		this.idCliente = idCliente;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	public void setProdottiCarrello(ArrayList<Prodotto> prodottiCarrello) {
+
+	public void setProdottiCarrello(ArrayList<ProdottoCarrello> prodottiCarrello) {
 		this.prodottiCarrello = prodottiCarrello;
 	}
-	public void aggiungiAlCarrello(Prodotto p) {
+
+	public void aggiungiAlCarrello(ProdottoCarrello p) {
 		prodottiCarrello.add(p);
 	}
-	public void rimuoviDalCarrello(Prodotto p) {
+
+	public void rimuoviDalCarrello(ProdottoCarrello p) {
 		prodottiCarrello.remove(p);
 	}
+
 	public float getTotale() {
-		float tot=0;
-		for(Prodotto p : prodottiCarrello) {
-			tot+=p.getCosto();
+		float tot = 0;
+		for (ProdottoCarrello p : prodottiCarrello) {
+			tot += p.getProdotto().getCosto();
 		}
 		return tot;
 	}
+
 	public int getNumeroProdotti() {
 		return prodottiCarrello.size();
 	}
-	
+
+	public void incrementa(ProdottoCarrello p) {
+			prodottiCarrello.get(prodottiCarrello.indexOf(p)).incrementaQ();
+	}
+
+	public void decrementa(ProdottoCarrello p) {
+		prodottiCarrello.get(prodottiCarrello.indexOf(p)).decrementaQ();
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -53,8 +72,8 @@ public class Carrello {
 		if (obj == null || getClass() != obj.getClass()) {
 			return false;
 		}
-		Carrello c = (Carrello)obj;
-		return id==c.id;
+		Carrello c = (Carrello) obj;
+		return id == c.id;
 	}
 
 }

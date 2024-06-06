@@ -24,7 +24,7 @@
                 <% if (session.getAttribute("isLogged") == null || (Boolean) session.getAttribute("isLogged")==false) { %>
                     <a href="<%= request.getContextPath() %>/Login">Profilo</a>
                 <% } else { %>
-                    <a href="${pageContext.request.contextPath}/Logout">Logout</a>
+                    <a href="${pageContext.request.contextPath}/Account">Profilo</a>
                 <% } %>
             </li>
             <li class="menu-item"><a href="${pageContext.request.contextPath}/Carrello">Carrello</a></li>

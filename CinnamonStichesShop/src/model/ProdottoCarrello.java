@@ -1,31 +1,45 @@
 package model;
 
 public class ProdottoCarrello {
-	  private Prodotto prodotto;
-	  private int quantity;
+	private Prodotto prodotto;
+	private int quantity = 1;
+	private float tot;
 
-	  public ProdottoCarrello(Prodotto prodotto, int quantità) {
-	    this.prodotto = prodotto;
-	    this.quantity = quantità;
-	  }
+	public ProdottoCarrello(Prodotto prodotto, int quantità) {
+		this.prodotto = prodotto;
+		this.quantity = quantità;
+		this.tot = prodotto.getCosto() * quantity;
+	}
 
-	  public Prodotto getProdotto() {
-	    return prodotto;
-	  }
+	public Prodotto getProdotto() {
+		return prodotto;
+	}
 
-	  public void setProdotto(Prodotto prodotto) {
-	    this.prodotto = prodotto;
-	  }
+	public void setProdotto(Prodotto prodotto) {
+		this.prodotto = prodotto;
+	}
 
-	  public int getQuantita() {
-	    return quantity;
-	  }
+	public int getQuantita() {
+		return quantity;
+	}
 
-	  public void setQuantity(int quantità) {
-	    this.quantity = quantità;
-	  }
+	public void setQuantity(int quantità) {
+		this.quantity = quantità;
+	}
 
-	  public void incrementaQ(int incremento) {
-	    this.quantity += incremento;
-	  }
+	public float getTot() {
+		return tot;
+	}
+
+	public void setTot(float tot) {
+		this.tot = tot;
+	}
+
+	public void incrementaQ() {
+		quantity++;
+	}
+
+	public void decrementaQ() {
+		quantity--;
+	}
 }
