@@ -1,6 +1,7 @@
 package general;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
+
+import model.CategoriaDAO;
+import model.OrdineDAO;
+import model.PreferitiDAO;
+import model.ProdottoDAO;
 
 /**
  * Servlet implementation class IndexServlet
@@ -34,7 +41,6 @@ public class IndexServlet extends HttpServlet {
 		if (session.isNew()) {
 			session.setAttribute("isLogged", false);
 		}
-
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/view/index.jsp");
 		dispatcher.forward(request, response);
 	}

@@ -13,25 +13,15 @@ public class Ordine {
 	private LocalDate data;
 	private String stato;
 	private String indirizzoSpedizione;
-	private int quantitàProdotti;
 	private float tot;
 	private ArrayList<ProdottoCarrello> prodotti;
+	private int quantitàProdotti;
 
 	public Ordine() {
 		prodotti = new ArrayList<>();
 		tot = 0;
 		quantitàProdotti = 0;
 		stato = STATUS.PREPARAZIONE.toString();
-		data=LocalDate.now();
-	}
-
-	public Ordine(ArrayList<ProdottoCarrello> pList, int id, String via, String cap, String paese) {
-		prodotti.addAll(pList);
-		tot = getTot();
-		quantitàProdotti = prodotti.size();
-		stato = STATUS.PREPARAZIONE.toString();
-		setIndirizzoSpedizione(via, cap, paese);
-		idCliente = id;
 		data = LocalDate.now();
 	}
 
@@ -79,12 +69,9 @@ public class Ordine {
 		String indirizzoSpedizione = componiIndirizzo(via, cap, paese);
 		this.indirizzoSpedizione = indirizzoSpedizione;
 	}
-	
+
 	public void setIndirizzoSpedizione(String indirizzo) {
 		this.indirizzoSpedizione = indirizzo;
-	}
-	public void setQuantitàProdotti(int quantitàProdotti) {
-		this.quantitàProdotti = quantitàProdotti;
 	}
 
 	public void setStato(String stato) {
@@ -94,13 +81,17 @@ public class Ordine {
 	public void setTot(float tot) {
 		this.tot = tot;
 	}
-
+	public void setQuantitàProdotti(int quantitàProdotti) {
+		this.quantitàProdotti = quantitàProdotti;
+	}
 	public void setProdotti(ArrayList<ProdottoCarrello> prodotti) {
 		this.prodotti = prodotti;
 	}
+
 	public void setCodiceOrdine(int id) {
 		codiceOrdine = id;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -114,9 +105,9 @@ public class Ordine {
 	}
 
 	public void aggiungiProdotto(ProdottoCarrello p) {
-		prodotti.add(p);
-		quantitàProdotti++;
-		tot = calcolaTotale();
+		this.prodotti.add(p);
+		this.tot += p.getTot();
+
 	}
 
 	private String controllaStato() {
@@ -126,15 +117,6 @@ public class Ordine {
 			return STATUS.CONSEGNATO.toString();
 		else
 			return stato;
-
-	}
-
-	private float calcolaTotale() {
-		if (prodotti.isEmpty())
-			return 0;
-		for (ProdottoCarrello p : prodotti)
-			tot += p.getTot();
-		return tot;
 	}
 
 	private static String componiIndirizzo(String via, String cap, String paese) {

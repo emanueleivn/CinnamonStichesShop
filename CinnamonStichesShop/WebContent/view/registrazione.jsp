@@ -22,7 +22,7 @@
 		required pattern="^[A-Za-z\s]+$" maxlength="100" title="Inserire il cognome, max 50 parole">
 	<label>Indirizzo</label>
 <input class="inp" type="text" id="via" name="via" placeholder="Via" 
-    required pattern="^[A-Za-z\s]+$" maxlength="50">
+    required pattern="^\w+[\w\s]+\w+$" maxlength="50">
 	<label>Cap   </label>
 	<input class="inp" type="text"id="cap" name="cap" placeholder="Cap"
 	required pattern="[0-9]{5}" title="Inserisci un numero di 5 cifre">
@@ -32,13 +32,14 @@
 	<h4>Dati Utente</h4>
 	<label>Username </label>
 	<input class="inp" type="text"id="username" name="user" placeholder="Username" 
-	required pattern="[A-Za-z0-9]+" title="Caratteri consentiti A-Z,a-z,0-9" maxlength="20" placeholder="Inserisci username" required>
+	required pattern="^\w+[\w\s]+\w+$" title="Caratteri consentiti A-Z,a-z,0-9" maxlength="20" placeholder="Inserisci username" required>
 	<label>Email</label>
 	<input class="inp" type="email"id="email" name="email" placeholder="E-mail" required>
 	<label>Password</label>
 	<input class="inp" type="password" id="password" name="password" placeholder="Password" 
     required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$"title="Inserire almeno una maiuscola,una minuscola e un numero">
-	<label>Ripeti Password</label><input class="inp" type="password" id="passwordR"name="ripetipassword" placeholder="Ripeti password" required>
+	<label>Ripeti Password</label><input class="inp" type="password" id="passwordR"name="ripetipassword" placeholder="Ripeti password"  onchange="return validate()" required>
+	<p id="errorMessage"></p> 
 	<input id="sub" type="submit" value="Crea account"><br><br>
 </form>
 </div>

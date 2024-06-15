@@ -2,7 +2,9 @@ const passErrorMsg="Caratteri speciali inseriti non consentiti";
 const RegExp = /[!@#$%^&*()_+{}\[\]|\\:;"'<>,.?/]/;
 function passwordMatchValidate(password, passwordR) {
     if (password !== passwordR) {
-        alert("Le due password non corrispondo!");
+       	var m= document.getElementById("errorMessage")
+       	m.style.color="red"
+       	m.innerHTML = "Le due password non corrispondo!"
         document.getElementById("password").style.borderStyle = "solid";
         document.getElementById("password").style.borderColor = "red";
         document.getElementById("passwordR").style.borderStyle = "solid";
@@ -13,7 +15,9 @@ function passwordMatchValidate(password, passwordR) {
 }
 function passwordValidate(password) {
     if (RegExp.test(password)) {
-        alert(passErrorMsg);
+		var m= document.getElementById("errorMessage")
+       	m.style.color="red"
+       	m.innerHTML = passErrorMsg;
         document.getElementById("password").style.borderStyle = "solid";
         document.getElementById("password").style.borderColor = "red";
         return false;
