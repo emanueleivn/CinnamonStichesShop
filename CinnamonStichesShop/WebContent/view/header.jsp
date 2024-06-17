@@ -30,7 +30,12 @@
             <li class="menu-item"><a href="${pageContext.request.contextPath}/Carrello">Carrello</a></li>
             <li class="menu-item"><a href="${pageContext.request.contextPath}/Preferiti">Preferiti</a></li>
             <li class="menu-item"><a href="${pageContext.request.contextPath}/Categoria">Categoria</a></li>
-            <li class="menu-item"><a href="${pageContext.request.contextPath}/AboutUs">About Us</a></li>
+            <li class="menu-item">
+            <% if ((session.getAttribute("isLogged") == Boolean.TRUE) && (session.getAttribute("isAdmin") == Boolean.TRUE)){%>
+                    <a href="<%= request.getContextPath() %>/PaginaAmministratore">Manage</a>
+            <% }else{ %>
+            <a href="${pageContext.request.contextPath}/AboutUs">About Us</a></li>
+            <% } %>
         </ul>
         <div class="menu-icon" onclick="toggleMenu()">
             <div></div>

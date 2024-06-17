@@ -22,12 +22,13 @@ public class ProdottoDAO {
 		byte[] bt = null;
 		try {
 			connection = ds.getConnection();
-			ps = connection.prepareStatement("INSERT INTO prodotto (costo, descrizione, idCategoria, nome) VALUES (?, ?, ?,?)",
+			ps = connection.prepareStatement("INSERT INTO prodotto (costo, descrizione, idCategoria, nome, immaginePath) VALUES (?, ?, ?,?)",
 					PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setFloat(1, prodotto.getCosto());
 			ps.setString(2, prodotto.getDescrizione());
 			ps.setInt(3, prodotto.getIdCategoria());
 			ps.setString(4, prodotto.getNome());
+			ps.setString(5, prodotto.getImmagine());
 
 			if (ps.executeUpdate() != 1)
 				throw new Exception("Errore INSERT INTO");
@@ -77,13 +78,14 @@ public class ProdottoDAO {
 		try {
 			connection = ds.getConnection();
 			ps = connection.prepareStatement(
-					"UPDATE prodotto SET costo = ?, descrizione = ?, idCategoria = ? , nome = ? ,isDisponibile =? WHERE codice = ?");
+					"UPDATE prodotto SET costo = ?, descrizione = ?, idCategoria = ? , nome = ? ,isDisponibile =?, immagine=? WHERE codice = ?");
 			ps.setFloat(1, prodotto.getCosto());
 			ps.setString(2, prodotto.getDescrizione());
 			ps.setInt(3, prodotto.getIdCategoria());
 			ps.setInt(4, prodotto.getCodice());
 			ps.setString(5, prodotto.getNome());
-			ps.setBoolean(6, prodotto.getIsDisp());
+			ps.setString(6, prodotto.getImmagine());
+			ps.setBoolean(7, prodotto.getIsDisp());
 			if (ps.executeUpdate() != 1) {
 				throw new Exception("Errore aggiornamento prodotto");
 			}
@@ -116,8 +118,7 @@ public class ProdottoDAO {
 				prodotto.setDescrizione(rs.getString("descrizione"));
 				prodotto.setIdCategoria(rs.getInt("idCategoria"));
 				prodotto.setIsDisp(true);
-				ImmagineProdottoDAO im = new ImmagineProdottoDAO(ds);
-				prodotto.setImmagini(im.doRetriveByIdProdotto(rs.getInt("codice")));
+				prodotto.setImmagine(rs.getString("immagine"));
 				prodotti.add(prodotto);
 			}
 		} catch (Exception e) {
@@ -151,8 +152,7 @@ public class ProdottoDAO {
 				prodotto.setDescrizione(rs.getString("descrizione"));
 				prodotto.setIdCategoria(rs.getInt("idCategoria"));
 				prodotto.setIsDisp(true);
-				ImmagineProdottoDAO im = new ImmagineProdottoDAO(ds);
-				prodotto.setImmagini(im.doRetriveByIdProdotto(rs.getInt("codice")));
+				prodotto.setImmagine(rs.getString("immagine"));
 			}
 		} catch (Exception e) {
 			System.out.println("Errore: " + e.getMessage());

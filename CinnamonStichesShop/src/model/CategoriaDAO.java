@@ -128,10 +128,10 @@ public class CategoriaDAO {
 		return cl;
 	}
 
-	public synchronized Collection<Categoria> doRetriveById(int id) throws SQLException {
+	public synchronized Categoria doRetriveById(int id) throws SQLException {
 		Connection cn = null;
 		PreparedStatement ps = null;
-		Collection<Categoria> cl = new ArrayList<Categoria>();
+		Categoria cat =new Categoria();
 		try {
 			cn = ds.getConnection();
 			ps = cn.prepareStatement("SELECT * FROM categoria WHERE id=?");
@@ -141,7 +141,6 @@ public class CategoriaDAO {
 				Categoria ca = new Categoria();
 				ca.setNome(rs.getString("nome"));
 				ca.setDescrizione(rs.getString("descrizione"));
-				cl.add(ca);
 			}
 		} catch (Exception e) {
 			System.out.println("Errore:" + e.getMessage());
@@ -155,7 +154,7 @@ public class CategoriaDAO {
 					cn.close();
 			}
 		}
-		return cl;
+		return cat;
 	}
 	public synchronized ArrayList<Categoria> doRetriveByNome(String nome) throws SQLException {
 		Connection cn = null;

@@ -16,7 +16,6 @@ import javax.sql.DataSource;
 import model.Prodotto;
 import model.Utente;
 import model.PreferitiDAO;
-import model.ImmagineProdottoDAO;
 
 @WebServlet("/Preferiti")
 public class PreferitiServlet extends HttpServlet {
@@ -32,14 +31,11 @@ public class PreferitiServlet extends HttpServlet {
 		} else {
 			DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 			PreferitiDAO pr = new PreferitiDAO(ds);
-			ImmagineProdottoDAO im = new ImmagineProdottoDAO(ds);
 			List<Prodotto> preferiti = null;
 			try {
 				preferiti = pr.doRetrieveAllFavourite(u.getId());
-				for (Prodotto p : preferiti) {
-					p.setImmagini(im.doRetriveById(p.getCodice()));
-				}
-			} catch (SQLException e) {}
+			}
+			 catch (SQLException e) {}
 			request.setAttribute("preferiti", preferiti);
 			returnAddress = "/view/preferiti.jsp";
 

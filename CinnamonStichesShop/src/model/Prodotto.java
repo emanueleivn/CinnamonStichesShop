@@ -1,20 +1,16 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Prodotto {
 	private int codice;
 	private String nome;
 	private String descrizione;
 	private float costo;
-	private List<ImmagineProdotto> immagini;
-	private List<String> taglie;
+	private String immaginePath;
 	private int idCategoria;
 	private boolean isDisp;
 	
 	public Prodotto() {
-		taglie = new ArrayList<>();
 	}
 	public int getIdCategoria() {
 		return idCategoria;
@@ -35,16 +31,14 @@ public class Prodotto {
 		return descrizione;
 	}
 
-	public List<String> getTaglie() {
-		return taglie;
-	}public boolean getIsDisp() {
+	public boolean getIsDisp() {
 		return isDisp;
 	}
-	public List<ImmagineProdotto> getImmagini() {
-		return immagini;
+	public String getImmagine() {
+		return immaginePath;
 	}
-	public void setImmagini(List<ImmagineProdotto> immagini) {
-		this.immagini = immagini;
+	public void setImmagine(String path) {
+		this.immaginePath = path;
 	} 
 	
 	public void setCodice(int codice) {
@@ -60,9 +54,6 @@ public class Prodotto {
 		this.descrizione = descrizione;
 	}
 	
-	public void setTaglie(List<String> taglie) {
-		this.taglie = taglie;
-	}
 	public void setIsDisp(boolean isDisp) {
 		this.isDisp = isDisp;
 	}
