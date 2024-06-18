@@ -36,7 +36,12 @@ body {
 }
 
 #log-reg input {
-	background-color: #F9D5E1;
+	border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 16px;
+    margin-top: 12px;
 }
 
 #log-reg .inp {
@@ -49,21 +54,41 @@ body {
 	margin-bottom: 2%;
 	text-align: left;
 }
+#login{
+	margin: 10px;
+    padding: 10px;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#login form{
+	display: flex;
+    flex-direction: column;
+    width:80%;
+}
 
-#sub {
-	width: 30%;
+#RegForm{
+	display: flex;
+    flex-direction: column;
+    width:80%;
+    margin:0;
+    padding:0;
+}
+.sub {
+	width: 50%;
 	height: auto;
-	padding: 6px;
+	border: none;
+    padding: 10px 14px;
 	font-size: 20px;
 	margin-top: 20px;
 	font-weight: bold;
 }
 
-#sub:hover {
+.sub:hover {
 	cursor: pointer;
 	background-color: #FFDCB9;
 }
-
 #anchor {
 	font-size: 15px;
 	text-decoration: none;
@@ -77,7 +102,7 @@ body {
 #about {
 	background-color: white;
 	color: black;
-	margin: 80px auto 80px;
+	margin: 60px auto 80px;
 	padding: 10px;
 	display: flex;
 	flex-direction: column;
@@ -259,7 +284,13 @@ button:hover {
 .container tr:hover {
     background-color: #f5f5f5;
 }
-
+.immagine img{
+    max-width: 100px;
+    height: auto;
+    border:thin;
+    border-radius: 5px;
+    display: block;
+}
 
 @media ( max-width : 930px){
 	#aboutproduct .product-feature {

@@ -13,22 +13,27 @@
 <body>
 	<div class="container">
 		<div class="bottoni">
-		<form action="${pageContext.request.contextPath}/PaginaAmministratore?azione=add" method="GET">
-			<button type="submit" name="aggiungi">Aggiungi prodotto</button>
-		</form>
-			<form action="${pageContext.request.contextPath}/PaginaAmministratore?azione=mod" method="GET">
-			<button type="submit" name="modifica">Modifica prodotto</button>
-		</form>
-			<form action="${pageContext.request.contextPath}/PaginaAmministratore?azione=showOrders" method="GET">
-			<button type="submit" name="Logout">Visualizza ordini</button>
-		</form>
-			<form action="${pageContext.request.contextPath}/PaginaAmministratore?azione=showUsers" method="GET">
-			<button type="submit" name="Logout">Visualizza utenti</button>
-		</form>
-			
+			<form
+				action="${pageContext.request.contextPath}/admin/PaginaAmministratore"
+				method="post">
+				<input type="hidden" name="azioneAdmin" value="modify" />
+				<button type="submit">Modifica catalogo</button>
+			</form>
+			<form
+				action="${pageContext.request.contextPath}/admin/PaginaAmministratore"
+				method="post">
+				<input type="hidden" name="azioneAdmin" value="viewOrders"/>
+				<button type="submit">Visualizza ordini</button>
+			</form>
+			<form
+				action="${pageContext.request.contextPath}/admin/PaginaAmministratore"
+				method="post">
+				<input type="hidden" name="azioneAdmin" value="viewUsers" />
+				<button type="submit">Visualizza utenti</button>
+			</form>
 		</div>
+
 	</div>
-	<%@include file="footer.jsp"%>
 </body>
 
 </html>

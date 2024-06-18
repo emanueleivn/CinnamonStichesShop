@@ -8,10 +8,12 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css">
     <script src="${pageContext.request.contextPath}/scripts/validate.js"></script>
 </head>
+<%@include file="header.jsp" %>
 <body>
-    <%@include file="header.jsp" %>
+    
     <div id="log-reg">
         <h4>Login</h4>
+        <div id="login">
         <form action="${pageContext.request.contextPath}/Login" method="POST" onsubmit="return validate()">
             <label>Username</label>
             <input class="inp" type="text" id="username" name="user" placeholder="username" required 
@@ -20,6 +22,7 @@
             <input class="inp" type="password" id="password" name="password" placeholder="password" required /> 
             <input class="sub" type="submit" value="LOGIN">
         </form>
+        </div>
         <p>
             <a id="anchor" href="${pageContext.request.contextPath}/view/registrazione.jsp">Non sei registrato? Registrati ora.</a>
         </p>

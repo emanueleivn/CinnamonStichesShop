@@ -2,14 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
 <%@ page import="model.*"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>Carrello</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/page.css">
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/scripts/carrelloscript.js"></script>
 </head>
 <%@include file="header.jsp"%>
 <body>
@@ -38,30 +39,46 @@
 				<td><%=product.getProdotto().getNome()%></td>
 				<td><%=product.getProdotto().getCosto()%></td>
 				<td>
-					<form action="/Carrello" method="POST">
-						<input type="hidden" name="productId"
+					<form action="${pageContext.request.contextPath}/Carrello"
+						method="POST">
+						<input type="hidden" name="codice"
 							value="<%=product.getProdotto().getCodice()%>" /> <input
 							type="hidden" name="action" value="remove" />
 						<button type="submit">Rimuovi</button>
 					</form>
 				</td>
-				<td><%=product.getQuantita()%></td>
-				<td><%=product.getTot()%></td>
+				<td><input type="number"
+					id="quantita_<%=product.getProdotto().getCodice()%>"
+					name="quantita_<%=product.getProdotto().getCodice()%>" min="1"
+					max="10" value="<%=product.getQuantita()%>"
+					data-codice="<%=product.getProdotto().getCodice()%>"
+					onChange="incrDecr(this)" required></td>
+				<td id="totale_<%=product.getProdotto().getCodice()%>"><%=product.getTot()%></td>
 			</tr>
-			<%}%>
+			<%
+			}
+			%>
 		</table>
+		<div class="totale-carrello">
+			Totale: <span id="totaleCarrello"><%=cart.getTotale()%></span>
+		</div>
 		<div class="bottoni">
 			<form action="/EffettuaOrdineServlet" method="POST">
 				<button type="submit">Acquista</button>
 			</form>
 
-			<form action="//Carrello" method="POST">
-				<input type="hidden" name="action" value="svuota" />
+			<form action="${pageContext.request.contextPath}/Carrello"
+				method="POST">
+				<input type="hidden" name="action" value="delete" />
 				<button type="submit">Svuota Carrello</button>
 			</form>
 		</div>
-		<%}%>
+		<%
+		}
+		%>
 	</div>
 
 </body>
+
 </html>
+

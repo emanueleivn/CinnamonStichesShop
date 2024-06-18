@@ -41,12 +41,12 @@ public class PreferitiDAO {
 		ArrayList<Prodotto> preferiti = new ArrayList<>();
 		try {
 			connection = ds.getConnection();
-			ps = connection.prepareStatement("SELECT idProdotto FROM Salva WHERE idUtente=?");
+			ps = connection.prepareStatement("SELECT * FROM preferiti WHERE idUtente=?");
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				ProdottoDAO p = new ProdottoDAO(ds);
-				preferiti.add(p.doRetrieveById(rs.getInt(1)));
+				preferiti.add(p.doRetrieveById(rs.getInt("idProdotto")));
 			}
 		} catch (Exception e) {
 			System.out.println("Errore DAO: " + e.getMessage());
@@ -67,7 +67,7 @@ public class PreferitiDAO {
 		ArrayList<Prodotto> preferiti = new ArrayList<>();
 		try {
 			connection = ds.getConnection();
-			ps = connection.prepareStatement("INSERT INTO Salva (idUtente,idProdotto) VALUES (?,?)");
+			ps = connection.prepareStatement("INSERT INTO preferiti (idUtente,idProdotto) VALUES (?,?)");
 			ps.setInt(1, idUtente);
 			ps.setInt(2, idProdotto);
 			if (ps.executeUpdate() != 1)
@@ -91,7 +91,7 @@ public class PreferitiDAO {
 		ArrayList<Prodotto> preferiti = new ArrayList<>();
 		try {
 			connection = ds.getConnection();
-			ps = connection.prepareStatement("DELETE FROM Salva WHERE idUtente=? AND idProdotto=?");
+			ps = connection.prepareStatement("DELETE FROM preferiti WHERE idUtente=? AND idProdotto=?");
 			ps.setInt(1, idUtente);
 			ps.setInt(2, idProdotto);
 			if (ps.executeUpdate() != 1)

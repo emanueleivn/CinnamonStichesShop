@@ -14,7 +14,7 @@
     <div class="container">
         <h2>Gestione Prodotto</h2>
 
-        <form action="${pageContext.request.contextPath}/ModificaProdotto" method="post" enctype="multipart/form-data">
+        <form action="${pageContext.request.contextPath}/admin/ModificaProdotto" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="nomeProdotto">Nome Prodotto</label>
                 <input type="text" id="nomeProdotto" name="nomeProdotto"required>

@@ -13,11 +13,12 @@
 	if (msg == null)
 		msg = "";
 	%>
-	<div>
+	<div style="text-align: center">
 	<h1 style="color: red">Errore</h1>
 	<h3><%=msg%></h3>
 	</div>
 	
-	<%@include file="footer.jsp"%>
+	
 </body>
+
 </html>

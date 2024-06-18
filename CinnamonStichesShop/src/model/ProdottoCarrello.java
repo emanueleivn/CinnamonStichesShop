@@ -42,4 +42,15 @@ public class ProdottoCarrello {
 	public void decrementaQ() {
 		quantity--;
 	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null || getClass() != obj.getClass()) {
+			return false;
+		}
+		ProdottoCarrello p = (ProdottoCarrello) obj;
+		return p.prodotto.getCodice()==this.prodotto.getCodice();
+	}
 }

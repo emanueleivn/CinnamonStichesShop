@@ -102,5 +102,5 @@ INSERT INTO Contiene (codiceOrdine, idProdotto, quantità) VALUES
 INSERT INTO Salva (idUtente, idProdotto) VALUES
 (1, 1),
 (1, 2);
-categoria
+
 UNLOCK TABLES ;

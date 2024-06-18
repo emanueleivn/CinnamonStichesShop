@@ -1,6 +1,8 @@
 package control.Admin;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,11 +10,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
+
+import model.Prodotto;
+import model.ProdottoDAO;
 
 /**
  * Servlet implementation class RedirAdminServlet
  */
-@WebServlet("/PaginaAmministratore")
+@WebServlet("/admin/PaginaAmministratore")
 public class RedirAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -30,18 +36,39 @@ public class RedirAdminServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String azione = request.getParameter("azione");
-		String reAddress ="";
-		switch (azione) {
-		case "add":reAddress="/view/aggiungiProdotto.jsp";
-		case "mod":reAddress="/view/modificaProdotto.jsp";
-		case "showOrders":reAddress="/view/ordini.jsp";
-		case "showUsers":reAddress="/view/utenti.jsp";
-		default: reAddress= "/view/amministrazione.jsp";
+		String azione = request.getParameter("azioneAdmin");
+		String reAddress = "/view/amministrazione.jsp";
+		if (azione != null) {
+			switch (azione) {
+			case "add":
+				reAddress = "/view/aggiungiProdotto.jsp";
+				break;
+			case "modify":
+				DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+				ProdottoDAO productDAO = new ProdottoDAO(ds);
+				List<Prodotto> prodotti = null;
+				try {
+					prodotti = productDAO.doRetrieveAll();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+
+				request.setAttribute("prodotti", prodotti);
+				reAddress = "/view/amministraProdotti.jsp";
+				break;
+			case "showOrders":
+				reAddress = "/view/ordini.jsp";
+				break;
+			case "showUsers":
+				reAddress = "/view/utenti.jsp";
+				break;
+			default:
+				reAddress = "/view/error.jsp";
+				break;
+			}
 		}
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(reAddress);
 		dispatcher.forward(request, response);
-
 	}
 
 	/**

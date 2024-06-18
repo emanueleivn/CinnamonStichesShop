@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
 <%@ page import="model.*"%>
 <!DOCTYPE html>
@@ -15,14 +16,14 @@
 	<div class="cart-content">
 		<table class="carrello-table">
 			<tr>
+				<th></th>
 				<th>Prodotto</th>
 				<th>Prezzo</th>
-				<th>Rimuovi</th>
-				<th>Quantità</th>
+				<th></th>
 				<th></th>
 			</tr>
 			<%
-			List<Prodotto> preferiti = (List<Prodotto>) session.getAttribute("preferiti");
+			List<Prodotto> preferiti = (List<Prodotto>) request.getAttribute("preferiti");
 			if (preferiti == null || preferiti.isEmpty()) {
 			%>
 			<tr>
@@ -34,17 +35,28 @@
 			for (Prodotto product : preferiti) {
 			%>
 			<tr>
+				<td>
+					<div class="immagine">
+						<img
+							src="${pageContext.request.contextPath}/images/products/<%= product.getImmagine() %>"
+							alt="Immagine Prodotto" />
+					</div>
+				</td>
 				<td><%=product.getNome()%></td>
 				<td><%=product.getCosto()%></td>
 				<td>
-					<form action="rimuoviPreferiti" method="post">
+					<form action="/Preferiti" method="post">
+						<input type="hidden" name="action"
+							value="remove">
 						<input type="hidden" name="productId"
 							value="<%=product.getCodice()%>">
 						<button type="submit">Rimuovi</button>
 					</form>
 				</td>
 				<td>
-					<form action="addCarrello" method="post">
+					<form action="/Preferiti" method="post">
+					<input type="hidden" name="action"
+							value="addCart">
 						<input type="hidden" name="productId"
 							value="<%=product.getCodice()%>">
 						<button type="submit">Aggiungi al carrello</button>

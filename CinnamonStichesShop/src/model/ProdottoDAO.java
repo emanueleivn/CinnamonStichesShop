@@ -22,7 +22,7 @@ public class ProdottoDAO {
 		byte[] bt = null;
 		try {
 			connection = ds.getConnection();
-			ps = connection.prepareStatement("INSERT INTO prodotto (costo, descrizione, idCategoria, nome, immaginePath) VALUES (?, ?, ?,?)",
+			ps = connection.prepareStatement("INSERT INTO prodotto (costo, descrizione, categoria, nome, immagine) VALUES (?, ?, ?,?)",
 					PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setFloat(1, prodotto.getCosto());
 			ps.setString(2, prodotto.getDescrizione());
@@ -78,7 +78,7 @@ public class ProdottoDAO {
 		try {
 			connection = ds.getConnection();
 			ps = connection.prepareStatement(
-					"UPDATE prodotto SET costo = ?, descrizione = ?, idCategoria = ? , nome = ? ,isDisponibile =?, immagine=? WHERE codice = ?");
+					"UPDATE prodotto SET costo = ?, descrizione = ?, categoria = ? , nome = ? ,isDisponibile =?, immagine=? WHERE codice = ?");
 			ps.setFloat(1, prodotto.getCosto());
 			ps.setString(2, prodotto.getDescrizione());
 			ps.setInt(3, prodotto.getIdCategoria());
@@ -116,7 +116,7 @@ public class ProdottoDAO {
 				prodotto.setNome(rs.getString("nome"));
 				prodotto.setCosto(rs.getFloat("costo"));
 				prodotto.setDescrizione(rs.getString("descrizione"));
-				prodotto.setIdCategoria(rs.getInt("idCategoria"));
+				prodotto.setIdCategoria(rs.getInt("categoria"));
 				prodotto.setIsDisp(true);
 				prodotto.setImmagine(rs.getString("immagine"));
 				prodotti.add(prodotto);
@@ -150,7 +150,7 @@ public class ProdottoDAO {
 				prodotto.setNome(rs.getString("nome"));
 				prodotto.setCosto(rs.getFloat("costo"));
 				prodotto.setDescrizione(rs.getString("descrizione"));
-				prodotto.setIdCategoria(rs.getInt("idCategoria"));
+				prodotto.setIdCategoria(rs.getInt("categoria"));
 				prodotto.setIsDisp(true);
 				prodotto.setImmagine(rs.getString("immagine"));
 			}

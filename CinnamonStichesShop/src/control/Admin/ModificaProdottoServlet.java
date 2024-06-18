@@ -48,13 +48,13 @@ public class ModificaProdottoServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String azione = request.getParameter("azione");
+		String azione = request.getParameter("azioneAdmin");
 		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
 		if (azione != null) {
 			String reAddress = "";
 			switch (azione) {
 
-			case "aggiungi":
+			case "add":
 				if (validate(request)) {
 					String nome = request.getParameter("nomeProdotto");
 					String descrizione = request.getParameter("descrizioneProdotto");
@@ -89,7 +89,7 @@ public class ModificaProdottoServlet extends HttpServlet {
 						reAddress = "/view/error.jsp";
 					}
 				}
-			case "modifica":
+			case "update":
 
 				if (validate(request)) {
 					String descrizione = request.getParameter("descrizioneProdotto");
@@ -123,7 +123,7 @@ public class ModificaProdottoServlet extends HttpServlet {
 						reAddress = "/view/error.jsp";
 					}
 				}
-			case "elimina":
+			case "delete":
 				ProdottoDAO pDao = new ProdottoDAO(ds);
 
 				int i = Integer.parseInt(request.getParameter("idProdotto"));

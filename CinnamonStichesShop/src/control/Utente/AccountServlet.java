@@ -44,39 +44,9 @@ public class AccountServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
-		UtenteDAO userDao = new UtenteDAO(ds);
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		String nome = request.getParameter("nome");
-		String cognome = request.getParameter("cognome");
-		String via = request.getParameter("via");
-		String cap = request.getParameter("cap");
-		String città = request.getParameter("city");
-		String san = email + password + nome + cognome + via + cap + città;
-		try {
-			if (Sanitizer.sanitizeInput(san) && userDao.checkingEmail(email) == null) {
-				Utente ut = new Utente();
-				ut.setNome(nome);
-				ut.setCognome(cognome);
-				ut.setEmail(email);
-				ut.setPassword(Sanitizer.hashPassword(password));
-				ut.setVia(via);
-				ut.setCap(cap);
-				ut.setCittà(città);
-				ut.setIsAdmin(false);
-				userDao.doUpdate(ut);
-			}
-		} catch (SQLException e) {
-			String errorMessage = " Errore Generico, dati inseriti non accettabili";
-			request.setAttribute("errorMessage", errorMessage);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/view/error.jsp");
-			dispatcher.forward(request, response);
-			return;
-		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/account.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/modificaAccount.jsp");
 		dispatcher.forward(request, response);
-
+		
 	}
 
 }

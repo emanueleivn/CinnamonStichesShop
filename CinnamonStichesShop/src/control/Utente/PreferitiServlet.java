@@ -25,7 +25,7 @@ public class PreferitiServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String returnAddress;
 		HttpSession session = request.getSession();
-		Utente u = (Utente) session.getAttribute("utente");
+		Utente u = (Utente) session.getAttribute("user");
 		if (u == null) {
 			returnAddress = "/Login";
 		} else {
@@ -34,8 +34,14 @@ public class PreferitiServlet extends HttpServlet {
 			List<Prodotto> preferiti = null;
 			try {
 				preferiti = pr.doRetrieveAllFavourite(u.getId());
+				System.out.println(preferiti.size());
+			} catch (SQLException e) {
+				String errorMessage = " Errore Generico, dati inseriti non accettabili";
+				request.setAttribute("errorMessage", errorMessage);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/view/error.jsp");
+				dispatcher.forward(request, response);
+				return;
 			}
-			 catch (SQLException e) {}
 			request.setAttribute("preferiti", preferiti);
 			returnAddress = "/view/preferiti.jsp";
 

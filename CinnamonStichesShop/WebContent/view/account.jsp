@@ -11,6 +11,7 @@
 </head>
 <%@include file="header.jsp"%>
 <body>
+	<%if (session.getAttribute("user") != null){ %>
 	<div class="container">
 		<h2>Dettagli Utente</h2>
 		<table>
@@ -61,6 +62,7 @@
 		</form>
 		</div>
 	</div>
+	<%} else response.sendRedirect("/view/error.jsp");%>
 	<%@include file="footer.jsp"%>
 </body>
 </html>
