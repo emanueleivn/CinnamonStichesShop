@@ -6,7 +6,7 @@ public class Prodotto {
 	private String nome;
 	private String descrizione;
 	private float costo;
-	private String immaginePath;
+	private String immagine;
 	private int idCategoria;
 	private boolean isDisp;
 	
@@ -35,10 +35,10 @@ public class Prodotto {
 		return isDisp;
 	}
 	public String getImmagine() {
-		return immaginePath;
+		return immagine;
 	}
 	public void setImmagine(String path) {
-		this.immaginePath = path;
+		this.immagine = path;
 	} 
 	
 	public void setCodice(int codice) {

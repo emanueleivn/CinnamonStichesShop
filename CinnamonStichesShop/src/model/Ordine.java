@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 enum STATUS {
-	SPEDITO, CONSEGNATO, PREPARAZIONE;
+	SPEDITO, CONSEGNATO, IN_LAVORAZIONE;
 }
 
 public class Ordine {
@@ -19,10 +19,6 @@ public class Ordine {
 
 	public Ordine() {
 		prodotti = new ArrayList<>();
-		tot = 0;
-		quantitàProdotti = 0;
-		stato = STATUS.PREPARAZIONE.toString();
-		data = LocalDate.now();
 	}
 
 	public int getIdCliente() {
@@ -62,7 +58,7 @@ public class Ordine {
 	}
 
 	public void setData(LocalDate data) {
-		this.data = LocalDate.now();
+		this.data = data;
 	}
 
 	public void setIndirizzoSpedizione(String via, String cap, String paese) {
@@ -111,13 +107,16 @@ public class Ordine {
 	}
 
 	private String controllaStato() {
-		if (data.plusDays(2).isEqual(LocalDate.now()))
-			return STATUS.SPEDITO.toString();
-		if (data.plusDays(6).isEqual(LocalDate.now()))
-			return STATUS.CONSEGNATO.toString();
-		else
-			return stato;
-	}
+        LocalDate now = LocalDate.now();
+        long i = data.until(now).getDays();
+        if (i<=2) {
+            return "In Lavorazione";
+        } else if (i>=3 && i<=6) {
+            return STATUS.SPEDITO.toString();
+        } else {
+            return STATUS.CONSEGNATO.toString();
+        }
+    }
 
 	private static String componiIndirizzo(String via, String cap, String paese) {
 		return via + "," + cap + "," + paese;

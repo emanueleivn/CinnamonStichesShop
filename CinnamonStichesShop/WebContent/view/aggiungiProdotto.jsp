@@ -11,33 +11,18 @@
 </head>
 <%@include file="header.jsp"%>
 <body>
-    <div class="container">
+    <div id="log-reg">
         <h2>Gestione Prodotto</h2>
-
-        <form action="${pageContext.request.contextPath}/admin/ModificaProdotto" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="nomeProdotto">Nome Prodotto</label>
-                <input type="text" id="nomeProdotto" name="nomeProdotto"required>
-            </div>
-            <div class="form-group">
-                <label for="descrizioneProdotto">Descrizione Prodotto</label>
-                <textarea id="descrizioneProdotto" name="descrizioneProdotto" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="prezzoProdotto">Prezzo Prodotto</label>
-                <input type="number" step="0.01" id="prezzoProdotto" name="prezzoProdotto"required>
-            </div>
-            <div class="form-group">
-                <label for="idCategoria">Categoria Prodotto</label>
-                <input type="number" id="idCategoria" name="idCategoria" required>
-            </div>
-            <div class="form-group">
-                <label for="file">Immagine Prodotto (JPEG, PNG)</label>
-                <input type="file" id="file" name="file" accept=".jpeg, .jpg, .png">
-             </div>
-            <div class="form-group">
-                <button type="submit" name="azione" value="aggiungi">Aggiungi Prodotto</button>
-            </div>
+        <form id="RegForm" action="${pageContext.request.contextPath}/admin/AggiungiProdotto" enctype="multipart/form-data" method="POST" >
+                <label for="nome">Nome Prodotto</label>
+                <input class="inp" type="text" id="nome" name="nome"required>
+                <label for="descrizione">Descrizione Prodotto</label>
+                <textarea class="inp" id="descrizione" name="descrizione" required style="height:45px"></textarea>
+                <label for="prezzo">Prezzo Prodotto</label>
+                <input class="inp" type="number" step="0.01" id="prezzo" name="prezzo"required>
+                <label for="file">Immagine Prodotto (JPEG, PNG, GIF)</label>
+                <input class="inp" type="file" id="file" name="file" accept="image/png, image/gif, image/jpeg" required>
+                <button id="subProd" type="submit" value="Aggiungi Prodotto">Aggiungi Prodotto</button>
         </form>
 	</div>
     <%@include file="footer.jsp"%>

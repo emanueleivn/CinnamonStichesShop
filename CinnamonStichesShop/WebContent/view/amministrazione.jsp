@@ -22,7 +22,7 @@
 			<form
 				action="${pageContext.request.contextPath}/admin/PaginaAmministratore"
 				method="post">
-				<input type="hidden" name="azioneAdmin" value="viewOrders"/>
+				<input type="hidden" name="azioneAdmin" value="showOrders"/>
 				<button type="submit">Visualizza ordini</button>
 			</form>
 			<form

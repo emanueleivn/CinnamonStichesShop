@@ -1,10 +1,12 @@
 package model;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import javax.sql.DataSource;
 
 public class ProdottoDAO {
@@ -19,22 +21,19 @@ public class ProdottoDAO {
 	public synchronized void doSave(Prodotto prodotto) throws SQLException {
 		Connection connection = null;
 		PreparedStatement ps = null;
-		byte[] bt = null;
 		try {
 			connection = ds.getConnection();
-			ps = connection.prepareStatement("INSERT INTO prodotto (costo, descrizione, categoria, nome, immagine) VALUES (?, ?, ?,?)",
+			ps = connection.prepareStatement("INSERT INTO prodotto (costo, descrizione, nome, immagine) VALUES (?, ?, ?,?)",
 					PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setFloat(1, prodotto.getCosto());
 			ps.setString(2, prodotto.getDescrizione());
-			ps.setInt(3, prodotto.getIdCategoria());
-			ps.setString(4, prodotto.getNome());
-			ps.setString(5, prodotto.getImmagine());
+			ps.setString(3, prodotto.getNome());
+			ps.setString(4, prodotto.getImmagine());
 
 			if (ps.executeUpdate() != 1)
 				throw new Exception("Errore INSERT INTO");
 
-			ResultSet rs = ps.getGeneratedKeys();
-			int idProdotto = rs.getInt(1);
+			int idProdotto =ps.getGeneratedKeys().getInt(1);
 			prodotto.setCodice(idProdotto);
 		} catch (Exception e) {
 			System.out.println("Errore DAO: " + e.getMessage());
@@ -72,7 +71,7 @@ public class ProdottoDAO {
 		}
 	}
 
-	public synchronized void doUpdate(Prodotto prodotto) throws SQLException {
+	public synchronized void doUpdate(Prodotto prodotto,InputStream im) throws SQLException {
 		Connection connection = null;
 		PreparedStatement ps = null;
 		try {

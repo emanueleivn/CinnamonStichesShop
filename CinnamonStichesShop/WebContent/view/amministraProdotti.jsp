@@ -18,8 +18,8 @@
   <h1>Prodotti del Catalogo</h1>
   <div class="catalogo">
       <div class="prodotto nuovo-prodotto">
-                 <form action="${pageContext.request.contextPath}/admin/ModificaProdotto" method="post">
-                      <input type="hidden" name="action" value="add"/>
+                 <form action="${pageContext.request.contextPath}/admin/PaginaAmministratore" method="post">
+                      <input type="hidden" name="azioneAdmin" value="add"/>
                       <button type="submit">Aggiungi nuovo prodotto</button>
                   </form>
       </div>
@@ -38,14 +38,14 @@
                   <p><strong>Costo:</strong> <%= prodotto.getCosto() %></p>
                   <p><strong>Disponibilità:</strong> <%= prodotto.getIsDisp() ? "Disponibile" : "Non disponibile" %></p>
                   <div class="action">
-                  <form action="${pageContext.request.contextPath}/ModificaProdotto" method="post">
+                  <form action="${pageContext.request.contextPath}/admin/ModificaProdotto" method="post">
                       <input type="hidden" name="codice" value="<%= prodotto.getCodice() %>"/>
-                      <input type="hidden" name="action" value="update"/>
+                      <input type="hidden" name="azioneAdmin" value="update"/>
                       <button type="submit">Modifica</button>
                   </form>
-                  <form action="${pageContext.request.contextPath}/ModificaProdotto" method="post">
+                  <form action="${pageContext.request.contextPath}/admin/ModificaProdotto" method="post">
                       <input type="hidden" name="codice" value="<%= prodotto.getCodice() %>"/>
-                      <input type="hidden" name="action" value="delete"/>
+                      <input type="hidden" name="azioneAdmin" value="delete"/>
                       <button type="submit">Elimina</button>
                   </form>
                   </div>

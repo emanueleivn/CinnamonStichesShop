@@ -23,7 +23,7 @@
             %>
                 <div class="prodotto">
                     <div class="immagine">
-                        <img src="${pageContext.request.contextPath}/images/products/<%= prodotto.getImmagine() %>" alt="Immagine Prodotto"/>
+                        <img src="${pageContext.request.contextPath}/images/products/<%= prodotto.getImmagine()%>" alt="Immagine Prodotto"/>
                     </div>
                     <div class="dettagli">
                         <p><strong>Nome:</strong> <%= prodotto.getNome() %></p>

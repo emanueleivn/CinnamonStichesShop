@@ -238,6 +238,23 @@ button {
 button:hover {
     background-color: #7b7295;
 }
+#subProd{
+	background-color:white;
+	color:black;
+	width: 50%;
+	height: auto;
+	border: none;
+    padding: 10px 14px;
+	font-size: 20px;
+	margin-top: 20px;
+	margin-bottom:20px;
+	font-weight: bold;
+}
+
+#subProd:hover {
+	cursor: pointer;
+	background-color: #FFDCB9;
+}
 .container {
     width: 80%;
     margin: 0 auto;

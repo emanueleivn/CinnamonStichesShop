@@ -28,9 +28,9 @@ CREATE TABLE prodotto (
     nome VARCHAR(255) NOT NULL,
     costo DECIMAL(10, 2) NOT NULL,
     descrizione TEXT,
-    categoria INT NOT NULL,
-    isDisponibile BOOLEAN NOT NULL,
-    immagine TEXT NOT NULL,
+    categoria INT NOT NULL default 1,
+    isDisponibile BOOLEAN NOT NULL default true,
+    immagine VARCHAR(150) NOT NULL,
     FOREIGN KEY (categoria) REFERENCES categoria(id) ON DELETE CASCADE ON UPDATE CASCADE 
 );
 USE CinnamonStichesShop;

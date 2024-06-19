@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import model.Ordine;
+import model.OrdineDAO;
 import model.Prodotto;
 import model.ProdottoDAO;
 
@@ -38,25 +40,44 @@ public class RedirAdminServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String azione = request.getParameter("azioneAdmin");
 		String reAddress = "/view/amministrazione.jsp";
+		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+		List<Prodotto> prodotti = null;
 		if (azione != null) {
 			switch (azione) {
 			case "add":
 				reAddress = "/view/aggiungiProdotto.jsp";
 				break;
+				
 			case "modify":
-				DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+
 				ProdottoDAO productDAO = new ProdottoDAO(ds);
-				List<Prodotto> prodotti = null;
+				
 				try {
 					prodotti = productDAO.doRetrieveAll();
 				} catch (SQLException e) {
 					e.printStackTrace();
+					reAddress = "/view/error.jsp";
+					request.setAttribute("errorMessage", "Errore interno.");
+					break;
 				}
 
 				request.setAttribute("prodotti", prodotti);
 				reAddress = "/view/amministraProdotti.jsp";
 				break;
+				
 			case "showOrders":
+				List<Ordine> listaOrdini = null;
+				String ordine = request.getParameter("ordine");
+				OrdineDAO o = new OrdineDAO(ds);
+				try {
+					listaOrdini = o.doRetrieveAll("ordine");
+					request.setAttribute("ordini", listaOrdini);
+				} catch (SQLException e) {
+					e.printStackTrace();
+					reAddress = "/view/error.jsp";
+					request.setAttribute("errorMessage", "Errore interno.");
+					break;
+				}
 				reAddress = "/view/ordini.jsp";
 				break;
 			case "showUsers":
