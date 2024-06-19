@@ -63,7 +63,7 @@
 			Totale: <span id="totaleCarrello"><%=cart.getTotale()%></span>
 		</div>
 		<div class="bottoni">
-			<form action="/EffettuaOrdineServlet" method="POST">
+			<form action="${pageContext.request.contextPath}/EffettuaOrdine" method="POST">
 				<button type="submit">Acquista</button>
 			</form>
 

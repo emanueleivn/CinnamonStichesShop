@@ -84,12 +84,11 @@ public class CarrelloServlet extends HttpServlet {
 					for (ProdottoCarrello pc : carrello.getProdottiCarrello()) {
 						if (pc.getProdotto().getCodice() == codiceProdotto) {
 							prodottoCarrello = pc;
+							prodottoCarrello.setQuantity(quantita);
+							prodottoCarrello.setTot(prodottoCarrello.getProdotto().getCosto() * quantita);
+							
 							break;
 						}
-					}
-					if (prodottoCarrello != null) {
-						prodottoCarrello.setQuantity(quantita);
-						prodottoCarrello.setTot(prodottoCarrello.getProdotto().getCosto() * quantita);
 					}
 					response.setContentType("application/json");
 					PrintWriter out = response.getWriter();

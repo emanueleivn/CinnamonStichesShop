@@ -16,6 +16,8 @@ import model.Ordine;
 import model.OrdineDAO;
 import model.Prodotto;
 import model.ProdottoDAO;
+import model.Utente;
+import model.UtenteDAO;
 
 /**
  * Servlet implementation class RedirAdminServlet
@@ -53,7 +55,7 @@ public class RedirAdminServlet extends HttpServlet {
 				ProdottoDAO productDAO = new ProdottoDAO(ds);
 				
 				try {
-					prodotti = productDAO.doRetrieveAll();
+					prodotti = productDAO.doRetrieveAllSaleable();
 				} catch (SQLException e) {
 					e.printStackTrace();
 					reAddress = "/view/error.jsp";
@@ -70,7 +72,7 @@ public class RedirAdminServlet extends HttpServlet {
 				String ordine = request.getParameter("ordine");
 				OrdineDAO o = new OrdineDAO(ds);
 				try {
-					listaOrdini = o.doRetrieveAll("ordine");
+					listaOrdini = o.doRetrieveAll(null);
 					request.setAttribute("ordini", listaOrdini);
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -81,7 +83,18 @@ public class RedirAdminServlet extends HttpServlet {
 				reAddress = "/view/ordini.jsp";
 				break;
 			case "showUsers":
-				reAddress = "/view/utenti.jsp";
+				List<Utente> utenti = null;
+				UtenteDAO u = new UtenteDAO(ds);
+				try {
+					utenti = u.doRetrieveAll("ordine");
+					request.setAttribute("utenti", utenti);
+				} catch (SQLException e) {
+					e.printStackTrace();
+					reAddress = "/view/error.jsp";
+					request.setAttribute("errorMessage", "Errore interno.");
+					break;
+				}
+				reAddress = "/view/amministraUtenti.jsp";
 				break;
 			default:
 				reAddress = "/view/error.jsp";

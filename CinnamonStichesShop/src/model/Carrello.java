@@ -7,7 +7,7 @@ public class Carrello {
 	private int id;
 	private int idCliente;
 	private ArrayList<ProdottoCarrello> prodottiCarrello;
-
+	private float totale;
 	public Carrello() {
 		prodottiCarrello = new ArrayList<>();
 	}
@@ -43,11 +43,14 @@ public class Carrello {
 	public void rimuoviDalCarrello(ProdottoCarrello p) {
 		prodottiCarrello.remove(p);
 	}
-
+	
+	public void setTotale(float tot) {
+		this.totale = tot;
+	}
 	public float getTotale() {
 		float tot = 0;
 		for (ProdottoCarrello p : prodottiCarrello) {
-			tot += p.getProdotto().getCosto();
+			tot += p.getProdotto().getCosto() * p.getQuantita();
 		}
 		return tot;
 	}

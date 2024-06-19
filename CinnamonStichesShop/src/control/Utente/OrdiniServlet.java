@@ -22,7 +22,11 @@ import model.Utente;
  */
 @WebServlet("/Ordini")
 public class OrdiniServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 569577875878308427L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -52,8 +56,10 @@ public class OrdiniServlet extends HttpServlet {
 		if (u == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/Login");
 			dispatcher.forward(request, response);
+			return;
 		}
-		OrdineDAO o = new OrdineDAO((DataSource) getServletContext().getAttribute("Data Source"));
+		DataSource ds = (DataSource) getServletContext().getAttribute("DataSource");
+		OrdineDAO o = new OrdineDAO(ds);
 
 		try {
 			ArrayList<Ordine> ordini = o.doRetrieveByIdCliente(u.getId());

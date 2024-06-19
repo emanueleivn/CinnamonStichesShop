@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
 <%@ page import="model.*"%>
 <!DOCTYPE html>
@@ -15,46 +15,83 @@
 </head>
 <%@include file="header.jsp"%>
 <body>
-  <h1>Prodotti del Catalogo</h1>
-  <div class="catalogo">
-      <div class="prodotto nuovo-prodotto">
-                 <form action="${pageContext.request.contextPath}/admin/PaginaAmministratore" method="post">
-                      <input type="hidden" name="azioneAdmin" value="add"/>
-                      <button type="submit">Aggiungi nuovo prodotto</button>
-                  </form>
-      </div>
-      <% 
-          List<Prodotto> prodotti = (List<Prodotto>) request.getAttribute("prodotti");
-          for (Prodotto prodotto : prodotti) {
-      %>
-      
-          <div class="prodotto">
-              <div class="immagine">
-                  <img src="${pageContext.request.contextPath}/images/products/<%= prodotto.getImmagine() %>" alt="Immagine Prodotto"/>
-              </div>
-              <div class="dettagli">
-                  <p><strong>Nome:</strong> <%= prodotto.getNome() %></p>
-                  <p><strong>Descrizione:</strong> <%= prodotto.getDescrizione() %></p>
-                  <p><strong>Costo:</strong> <%= prodotto.getCosto() %></p>
-                  <p><strong>Disponibilità:</strong> <%= prodotto.getIsDisp() ? "Disponibile" : "Non disponibile" %></p>
-                  <div class="action">
-                  <form action="${pageContext.request.contextPath}/admin/ModificaProdotto" method="post">
-                      <input type="hidden" name="codice" value="<%= prodotto.getCodice() %>"/>
-                      <input type="hidden" name="azioneAdmin" value="update"/>
-                      <button type="submit">Modifica</button>
-                  </form>
-                  <form action="${pageContext.request.contextPath}/admin/ModificaProdotto" method="post">
-                      <input type="hidden" name="codice" value="<%= prodotto.getCodice() %>"/>
-                      <input type="hidden" name="azioneAdmin" value="delete"/>
-                      <button type="submit">Elimina</button>
-                  </form>
-                  </div>
-              </div>
-          </div>
-      <% 
-          } 
-      %>
-  </div>
+	<h1>Prodotti del Catalogo</h1>
+	<div class="catalogo">
+		<div class="prodotto nuovo-prodotto">
+			<form
+				action="${pageContext.request.contextPath}/admin/PaginaAmministratore"
+				method="post">
+				<input type="hidden" name="azioneAdmin" value="add" />
+				<button type="submit">Aggiungi nuovo prodotto</button>
+			</form>
+		</div>
+		<%
+		List<Prodotto> prodotti = (List<Prodotto>) request.getAttribute("prodotti");
+		for (Prodotto prodotto : prodotti) {
+		%>
+
+		<div class="prodotto">
+			<div class="immagine">
+				<img
+					src="${pageContext.request.contextPath}/images/products/<%= prodotto.getImmagine() %>"
+					alt="Immagine Prodotto" />
+			</div>
+			<div class="dettagli">
+				<p>
+					<strong>Nome:</strong>
+					<%=prodotto.getNome()%></p>
+				<p>
+					<strong>Descrizione:</strong>
+					<%=prodotto.getDescrizione()%></p>
+				<p>
+					<strong>Costo:</strong>
+					<%=prodotto.getCosto()%></p>
+				<p>
+					<strong>Disponibilità:</strong>
+					
+					<%if(prodotto.getIsDisp()==true) {%>Disponibile
+					<%}else{%>Non disponibile<%} %>
+				<div class="action">
+					<form
+						action="${pageContext.request.contextPath}/admin/ModificaProdotto"
+						method="post">
+						<input type="hidden" name="codice"
+							value="<%=prodotto.getCodice()%>" /> <input type="hidden"
+							name="azioneAdmin" value="update" />
+						<button type="submit">Modifica</button>
+					</form>
+					<%
+					if (prodotto.getIsDisp()) {
+					%>
+					<form
+						action="${pageContext.request.contextPath}/admin/ModificaProdotto"
+						method="post">
+						<input type="hidden" name="codice"
+							value="<%=prodotto.getCodice()%>" /> <input type="hidden"
+							name="azioneAdmin" value="delete" />
+						<button type="submit">Elimina</button>
+					</form>
+					<%
+					} else {
+					%>
+					<form
+						action="${pageContext.request.contextPath}/admin/ModificaProdotto"
+						method="post">
+						<input type="hidden" name="codice"
+							value="<%=prodotto.getCodice()%>" /> <input type="hidden"
+							name="azioneAdmin" value="alive" />
+						<button type="submit">Rendi disponibile</button>
+					</form>
+					<%
+					}
+					%>
+				</div>
+			</div>
+		</div>
+		<%
+		}
+		%>
+	</div>
 </body>
 <%@include file="footer.jsp"%>
 </html>

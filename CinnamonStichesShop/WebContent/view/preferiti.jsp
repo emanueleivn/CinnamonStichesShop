@@ -45,7 +45,7 @@
 				<td><%=product.getNome()%></td>
 				<td><%=product.getCosto()%></td>
 				<td>
-					<form action="/Preferiti" method="post">
+					<form action="${pageContext.request.contextPath}/Preferiti" method="post">
 						<input type="hidden" name="action"
 							value="remove">
 						<input type="hidden" name="productId"
@@ -54,7 +54,7 @@
 					</form>
 				</td>
 				<td>
-					<form action="/Preferiti" method="post">
+					<form action="${pageContext.request.contextPath}/Preferiti" method="post">
 					<input type="hidden" name="action"
 							value="addCart">
 						<input type="hidden" name="productId"

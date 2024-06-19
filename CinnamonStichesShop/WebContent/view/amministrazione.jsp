@@ -28,7 +28,7 @@
 			<form
 				action="${pageContext.request.contextPath}/admin/PaginaAmministratore"
 				method="post">
-				<input type="hidden" name="azioneAdmin" value="viewUsers" />
+				<input type="hidden" name="azioneAdmin" value="showUsers" />
 				<button type="submit">Visualizza utenti</button>
 			</form>
 		</div>

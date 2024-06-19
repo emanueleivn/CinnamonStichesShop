@@ -11,28 +11,18 @@
 </head>
 <%@include file="header.jsp"%>
 <body>
-    <div class="container">
-        <h2>Gestione Prodotto</h2>
-
-        <form action="${pageContext.request.contextPath}/admin/ModificaProdotto" method="post">
-            <div class="form-group">
-                <label for="nomeProdotto">Nome Prodotto</label>
-                <input type="text" id="nomeProdotto" name="nomeProdotto" value="${prodotto.nome}" readonly>
-            </div>
-            <div class="form-group">
-                <label for="descrizioneProdotto">Descrizione Prodotto</label>
-                <textarea id="descrizioneProdotto" name="descrizioneProdotto" required>${prodotto != null ? prodotto.descrizione : ''}</textarea>
-            </div>
-            <div class="form-group">
-                <label for="prezzoProdotto">Prezzo Prodotto</label>
-                <input type="number" step="0.01" id="prezzoProdotto" name="prezzoProdotto" value="${prodotto != null ? prodotto.costo : ''}" required>
-            </div>
-            <div class="form-group">
-                <button type="submit" name="azione" value="modifica">Modifica Prodotto</button>
-            </div>
+   <div id="log-reg">
+        <h2>Modifica Prodotto</h2>
+        <form id="RegForm" action="${pageContext.request.contextPath}/admin/AggiornaProdotto" method="POST" onsubmit="return validate()" >
+        		<input type="hidden" name="codice" value="${prodotto.codice}"/>
+                <label for="descrizione">Descrizione Prodotto</label>
+                <textarea class="inp" id="descrizione" name="descrizione" style="height:45px" title="Inserire descrizione prodotto, max 200 parole" onblur="textValidate(this)" required ></textarea>
+                <span id="descrizione-error" class="error-message"></span>
+                <label for="prezzo">Prezzo Prodotto</label>
+                <input class="inp" type="number" step="0.01" id="prezzo" name="prezzo" placeholder="${prodotto.costo}" min="0.01" required>
+                <button id="subProd" type="submit" value="Aggiungi Prodotto">Salva modifiche</button>
         </form>
-        
-    </div>
+	</div>
     <%@include file="footer.jsp"%>
 </body>
 </html>

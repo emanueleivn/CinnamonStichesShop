@@ -17,7 +17,8 @@
         <form action="${pageContext.request.contextPath}/Login" method="POST" onsubmit="return validate()">
             <label>Username</label>
             <input class="inp" type="text" id="username" name="user" placeholder="username" required 
-            pattern="[A-Za-z0-9]+" title="Caratteri consentiti A-Z,a-z,0-9"/>
+            pattern="[A-Za-z0-9]+" title="Caratteri consentiti A-Z,a-z,0-9" onblur="textValidate(this)"/>
+            <span id="username-error" class="error-message"></span>
             <label>Password</label>
             <input class="inp" type="password" id="password" name="password" placeholder="password" required /> 
             <input class="sub" type="submit" value="LOGIN">

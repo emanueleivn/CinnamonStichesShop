@@ -1,6 +1,5 @@
 package model;
 
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -70,8 +69,29 @@ public class ProdottoDAO {
 			}
 		}
 	}
-
-	public synchronized void doUpdate(Prodotto prodotto,InputStream im) throws SQLException {
+	public synchronized void doDisponibile(int codice) throws SQLException {
+		Connection connection = null;
+		PreparedStatement ps = null;
+		try {
+			connection = ds.getConnection();
+			ps = connection.prepareStatement("UPDATE prodotto SET isDisponibile = true  WHERE codice = ?");
+			ps.setInt(1, codice);
+			if (ps.executeUpdate() != 1) {
+				throw new Exception("Errore eliminazione prodotto");
+			}
+		} catch (Exception e) {
+			System.out.println("Errore: " + e.getMessage());
+		} finally {
+			try {
+				if (ps != null)
+					ps.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+	}
+	public synchronized void doUpdate(Prodotto prodotto) throws SQLException {
 		Connection connection = null;
 		PreparedStatement ps = null;
 		try {
@@ -81,10 +101,10 @@ public class ProdottoDAO {
 			ps.setFloat(1, prodotto.getCosto());
 			ps.setString(2, prodotto.getDescrizione());
 			ps.setInt(3, prodotto.getIdCategoria());
-			ps.setInt(4, prodotto.getCodice());
-			ps.setString(5, prodotto.getNome());
+			ps.setString(4, prodotto.getNome());
+			ps.setBoolean(5, prodotto.getIsDisp());
 			ps.setString(6, prodotto.getImmagine());
-			ps.setBoolean(7, prodotto.getIsDisp());
+			ps.setInt(7, prodotto.getCodice());
 			if (ps.executeUpdate() != 1) {
 				throw new Exception("Errore aggiornamento prodotto");
 			}
@@ -117,6 +137,38 @@ public class ProdottoDAO {
 				prodotto.setDescrizione(rs.getString("descrizione"));
 				prodotto.setIdCategoria(rs.getInt("categoria"));
 				prodotto.setIsDisp(true);
+				prodotto.setImmagine(rs.getString("immagine"));
+				prodotti.add(prodotto);
+			}
+		} catch (Exception e) {
+			System.out.println("Errore: " + e.getMessage());
+		} finally {
+			try {
+				if (ps != null)
+					ps.close();
+			} finally {
+				if (connection != null)
+					connection.close();
+			}
+		}
+		return prodotti;
+	}
+	public synchronized ArrayList<Prodotto> doRetrieveAllSaleable() throws SQLException {
+		Connection connection = null;
+		PreparedStatement ps = null;
+		ArrayList<Prodotto> prodotti = new ArrayList<>();
+		try {
+			connection = ds.getConnection();
+			ps = connection.prepareStatement("SELECT * FROM prodotto ORDER BY nome");
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Prodotto prodotto = new Prodotto();
+				prodotto.setCodice(rs.getInt("codice"));
+				prodotto.setNome(rs.getString("nome"));
+				prodotto.setCosto(rs.getFloat("costo"));
+				prodotto.setDescrizione(rs.getString("descrizione"));
+				prodotto.setIdCategoria(rs.getInt("categoria"));
+				prodotto.setIsDisp(rs.getBoolean("isDisponibile"));
 				prodotto.setImmagine(rs.getString("immagine"));
 				prodotti.add(prodotto);
 			}
