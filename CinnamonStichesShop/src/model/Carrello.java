@@ -8,6 +8,7 @@ public class Carrello {
 	private int idCliente;
 	private ArrayList<ProdottoCarrello> prodottiCarrello;
 	private float totale;
+
 	public Carrello() {
 		prodottiCarrello = new ArrayList<>();
 	}
@@ -34,19 +35,23 @@ public class Carrello {
 
 	public void setProdottiCarrello(ArrayList<ProdottoCarrello> prodottiCarrello) {
 		this.prodottiCarrello = prodottiCarrello;
+		aggiornaTotale();
 	}
 
 	public void aggiungiAlCarrello(ProdottoCarrello p) {
 		prodottiCarrello.add(p);
+		totale += p.getProdotto().getCosto() * p.getQuantita();
 	}
 
 	public void rimuoviDalCarrello(ProdottoCarrello p) {
 		prodottiCarrello.remove(p);
+		totale -= p.getProdotto().getCosto() * p.getQuantita();
 	}
-	
+
 	public void setTotale(float tot) {
 		this.totale = tot;
 	}
+
 	public float getTotale() {
 		float tot = 0;
 		for (ProdottoCarrello p : prodottiCarrello) {
@@ -60,11 +65,13 @@ public class Carrello {
 	}
 
 	public void incrementa(ProdottoCarrello p) {
-			prodottiCarrello.get(prodottiCarrello.indexOf(p)).incrementaQ();
+		prodottiCarrello.get(prodottiCarrello.indexOf(p)).incrementaQ();
+		totale += p.getProdotto().getCosto();
 	}
 
 	public void decrementa(ProdottoCarrello p) {
 		prodottiCarrello.get(prodottiCarrello.indexOf(p)).decrementaQ();
+		totale -= p.getProdotto().getCosto();  
 	}
 
 	@Override
@@ -79,4 +86,10 @@ public class Carrello {
 		return id == c.id;
 	}
 
+	private void aggiornaTotale() {
+		totale = 0;
+		for (ProdottoCarrello p : prodottiCarrello) {
+			totale += p.getProdotto().getCosto() * p.getQuantita();
+		}
+	}
 }

@@ -80,7 +80,7 @@ public class RedirAdminServlet extends HttpServlet {
 					request.setAttribute("errorMessage", "Errore interno.");
 					break;
 				}
-				reAddress = "/view/ordini.jsp";
+				reAddress = "/view/ordiniAmministratore.jsp";
 				break;
 			case "showUsers":
 				List<Utente> utenti = null;

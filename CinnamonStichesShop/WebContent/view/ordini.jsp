@@ -20,6 +20,7 @@
                 <th>Indirizzo Spedizione</th>
                 <th>Totale</th>
                 <th>Stato</th>
+                <th></th>
             </tr>
             <%
                 List<Ordine> ordini = (List<Ordine>)request.getAttribute("ordini");
@@ -38,6 +39,12 @@
                     <td><%= ordine.getIndirizzoSpedizione() %></td>
                     <td><%= ordine.getTot() %></td>
                     <td><%= ordine.getStato() %></td>
+                    <td>
+                    <form action="${pageContext.request.contextPath}/DettagliOrdine" method="post">
+                    	<input type="hidden" name="codice" value="<%=ordine.getCodiceOrdine()%>"/>
+                    	<button id="dettagli-ordine" type="submit">Dettagli ordine...</button>
+                    </form>
+                    </td>
                 </tr>
             <%
                     }

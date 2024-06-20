@@ -46,18 +46,18 @@
 				<td><%=product.getCosto()%></td>
 				<td>
 					<form action="${pageContext.request.contextPath}/Preferiti" method="post">
-						<input type="hidden" name="action"
+						<input type="hidden" name="actionFav"
 							value="remove">
-						<input type="hidden" name="productId"
+						<input type="hidden" name="codiceProdotto"
 							value="<%=product.getCodice()%>">
 						<button type="submit">Rimuovi</button>
 					</form>
 				</td>
 				<td>
 					<form action="${pageContext.request.contextPath}/Preferiti" method="post">
-					<input type="hidden" name="action"
+					<input type="hidden" name="actionFav"
 							value="addCart">
-						<input type="hidden" name="productId"
+						<input type="hidden" name="codiceProdotto"
 							value="<%=product.getCodice()%>">
 						<button type="submit">Aggiungi al carrello</button>
 					</form>

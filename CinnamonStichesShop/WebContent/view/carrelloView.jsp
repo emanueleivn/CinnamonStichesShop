@@ -9,6 +9,8 @@
 <title>Carrello</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/page.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/prodotto.css">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/scripts/carrelloscript.js"></script>
 </head>
@@ -18,6 +20,7 @@
 		<table class="carrello-table">
 			<tr>
 				<th>Prodotto</th>
+				<th></th>
 				<th>Prezzo</th>
 				<th>Rimuovi</th>
 				<th>Quantità</th>
@@ -28,7 +31,7 @@
 			if (cart == null || cart.getNumeroProdotti() == 0) {
 			%>
 			<tr>
-				<td colspan="5" style="text-align: center">Nessun prodotto
+				<td colspan="6" style="text-align: center">Nessun prodotto
 					inserito</td>
 			</tr>
 			<%
@@ -37,6 +40,11 @@
 			%>
 			<tr>
 				<td><%=product.getProdotto().getNome()%></td>
+				<td>
+				<div class="immagine">
+				<img src="${pageContext.request.contextPath}/images/products/<%=product.getProdotto().getImmagine()%>" alt="Immagine prodotto">
+				</div>
+				</td>
 				<td><%=product.getProdotto().getCosto()%></td>
 				<td>
 					<form action="${pageContext.request.contextPath}/Carrello"
@@ -77,8 +85,6 @@
 		}
 		%>
 	</div>
-
 </body>
-
 </html>
 

@@ -40,10 +40,14 @@ public class EffettuaOrdineServlet extends HttpServlet {
         Carrello carrello = (Carrello) session.getAttribute("carrello");
         Utente user = (Utente) session.getAttribute("user");
 
-        if (carrello == null || user == null) {
+        if (carrello == null ) {
             String errore = "Errore sconosciuto.";
             request.setAttribute("errorMessage", errore);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/view/error.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }else if(user == null) {
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/Login");
             dispatcher.forward(request, response);
             return;
         }

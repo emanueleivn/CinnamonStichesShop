@@ -66,6 +66,7 @@ public class CarrelloServlet extends HttpServlet {
 				switch (action) {
 
 				case "add": {
+					
 					int codiceProdotto = Integer.parseInt(request.getParameter("codice"));
 					ProdottoDAO pdao = new ProdottoDAO(ds);
 					Prodotto p = pdao.doRetrieveById(codiceProdotto);

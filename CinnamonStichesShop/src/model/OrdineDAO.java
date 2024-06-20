@@ -114,49 +114,50 @@ public class OrdineDAO {
 	}
 
 	public synchronized Ordine doRetriveByCodiceOrdine(int codice) throws SQLException {
-		Connection connection = null;
-		PreparedStatement ps = null;
-		PreparedStatement ps1 = null;
-		Ordine ordine=null;
-		try {
-			connection = ds.getConnection();
-			ps = connection.prepareStatement("SELECT * FROM ordine WHERE codice = ?");
-			ps.setInt(1, codice);
-			ResultSet rs = ps.executeQuery();
-			ordine = new Ordine();
-			ordine.setCodiceOrdine(rs.getInt("codice"));
-			ordine.setData(rs.getDate("data").toLocalDate());
-			ordine.setStato(rs.getString("stato"));
-			ordine.setQuantitàProdotti(rs.getInt("quantità"));
-			ordine.setIndirizzoSpedizione(rs.getString("ind_spedizione"));
-			ordine.setQuantitàProdotti(rs.getInt("quantità"));
-			ordine.setTot(rs.getFloat("tot"));
-			ordine.setIdCliente(rs.getInt("utente_cod"));
-			ps1 = connection.prepareStatement("SELECT prodotto_codice,quantità FROM Contiene WHERE ordine_codice = ?");
-			ps1.setInt(1, codice);
-			ResultSet rs1 = ps1.executeQuery();
-			while(rs1.next()) {
-				ProdottoDAO pDao = new ProdottoDAO(ds);
-				Prodotto p = pDao.doRetrieveById(rs1.getInt("prodotto_codice"));
-				ProdottoCarrello pc = new ProdottoCarrello(pDao.doRetrieveById(rs1.getInt("codiceProdotto")),rs1.getInt("quantità"));
-				ordine.aggiungiProdotto(pc);
-			}
+	    Connection connection = null;
+	    PreparedStatement ps = null;
+	    PreparedStatement ps1 = null;
+	    Ordine ordine = null;
+	    try {
+	        connection = ds.getConnection();
+	        ps = connection.prepareStatement("SELECT * FROM ordine WHERE codice = ?");
+	        ps.setInt(1, codice);
+	        ResultSet rs = ps.executeQuery();
 
-		} catch (Exception e) {
-			System.out.println("Errore: " + e.getMessage());
+	        if (rs.next()) {
+	            ordine = new Ordine();
+	            ordine.setCodiceOrdine(rs.getInt("codice"));
+	            ordine.setData(rs.getDate("data").toLocalDate());
+	            ordine.setQuantitàProdotti(rs.getInt("quantità"));
+	            ordine.setIndirizzoSpedizione(rs.getString("ind_spedizione"));
+	            ordine.setTot(rs.getFloat("tot"));
+	            ordine.setIdCliente(rs.getInt("utente_cod"));
 
-		} finally {
-			try {
-				if (ps != null)
-					ps.close();
-				if(ps1 != null)
-					ps1.close();
-			} finally {
-				if (connection != null)
-					connection.close();
-			}
-		}
-		return ordine;
+	            ps1 = connection.prepareStatement("SELECT idProdotto, quantità FROM Contiene WHERE codiceOrdine = ?");
+	            ps1.setInt(1, codice);
+	            ResultSet rs1 = ps1.executeQuery();
+
+	            while (rs1.next()) {
+	                ProdottoDAO pDao = new ProdottoDAO(ds);
+	                Prodotto p = pDao.doRetrieveById(rs1.getInt("idProdotto"));
+	                ProdottoCarrello pc = new ProdottoCarrello(p, rs1.getInt("quantità"));
+	                ordine.aggiungiProdotto(pc);
+	            }
+	        } else {
+	            System.out.println("Ordine non trovato per il codice: " + codice);
+	        }
+	    } catch (Exception e) {
+	        System.out.println("Errore: " + e.getMessage());
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (ps != null) ps.close();
+	            if (ps1 != null) ps1.close();
+	        } finally {
+	            if (connection != null) connection.close();
+	        }
+	    }
+	    return ordine;
 	}
 
 	public synchronized ArrayList<Ordine> doRetrieveByIdCliente(int idUtente) throws SQLException {
@@ -172,7 +173,6 @@ public class OrdineDAO {
 	            Ordine ordine = new Ordine();
 	            ordine.setCodiceOrdine(rs.getInt("codice"));
 	            ordine.setData(rs.getDate("data").toLocalDate());
-	            ordine.setStato(rs.getString("stato"));
 	            ordine.setQuantitàProdotti(rs.getInt("quantità"));
 	            ordine.setIndirizzoSpedizione(rs.getString("ind_spedizione"));
 	            ordine.setTot(rs.getFloat("tot"));
@@ -214,7 +214,9 @@ public class OrdineDAO {
 	            ProdottoCarrello prodottoCarrello = new ProdottoCarrello(prodotto, quantità);
 	            prodottiCarrello.add(prodottoCarrello);
 	        }
-	    } finally {
+	    }catch (Exception e) {
+	    	System.out.println("Errore:2 " + e.getMessage());
+	    }finally {
 	        try {
 	            if (ps != null)
 	                ps.close();
@@ -223,7 +225,41 @@ public class OrdineDAO {
 	                connection.close();
 	        }
 	    }
+	    System.out.println(prodottiCarrello.size());
 	    return prodottiCarrello;
 	}
-
+	public synchronized ArrayList<Ordine> doRetrieveByDateRange(LocalDate date1, LocalDate date2) throws SQLException {
+        Connection connection = null;
+        PreparedStatement ps = null;
+        ArrayList<Ordine> ordini = new ArrayList<>();
+        try {
+            connection = ds.getConnection();
+            ps = connection.prepareStatement("SELECT * FROM ordine WHERE data BETWEEN ? AND ?");
+            ps.setDate(1, Date.valueOf(date1));
+            ps.setDate(2, Date.valueOf(date2));
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Ordine ordine = new Ordine();
+                ordine.setCodiceOrdine(rs.getInt("codice"));
+                ordine.setData(rs.getDate("data").toLocalDate());
+                ordine.setStato(rs.getString("stato"));
+                ordine.setIndirizzoSpedizione(rs.getString("ind_spedizione"));
+                ordine.setQuantitàProdotti(rs.getInt("quantità"));
+                ordine.setTot(rs.getFloat("tot"));
+                ordine.setIdCliente(rs.getInt("utente_cod"));
+                ordini.add(ordine);
+            }
+        } catch (Exception e) {
+            System.out.println("Errore DAO: " + e.getMessage());
+        } finally {
+            try {
+                if (ps != null)
+                    ps.close();
+            } finally {
+                if (connection != null)
+                    connection.close();
+            }
+        }
+        return ordini;
+    }
 }

@@ -1,6 +1,7 @@
 package control.Utente;
 
 import java.io.IOException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import model.Carrello;
 import model.Sanitizer;
 import model.Utente;
 import model.UtenteDAO;
@@ -53,6 +55,7 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("isLogged", true);
                 session.setAttribute("isAdmin", user.getIsAdmin());           
                 session.setAttribute("user", user);
+                session.setAttribute("carrello", new Carrello());
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/view/index.jsp");
                 dispatcher.forward(request, response);
             } else {
