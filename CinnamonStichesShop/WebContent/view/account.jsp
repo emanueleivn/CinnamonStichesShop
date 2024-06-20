@@ -12,7 +12,7 @@
 <%@include file="header.jsp"%>
 <body>
 	<%if (session.getAttribute("user") != null){ %>
-	<div class="container">
+	<div class="container container-account">
 		<h2>Dettagli Utente</h2>
 		<table>
 			<tr>

@@ -68,40 +68,6 @@ function aggiornaCatalogo(request) {
     var catalogo = document.querySelector('.catalogo');
     catalogo.innerHTML = '';
 
-    // Ricostruisci il form delle selezioni
-    var formOrdina = document.createElement('form');
-    formOrdina.className = 'ordina';
-    formOrdina.innerHTML = `
-        <label for="ordinePrezzo">Ordina per prezzo:</label> 
-        <select id="ordinePrezzo">
-            <option value="prezzocrescente">Prezzo crescente</option>
-            <option value="prezzodecrescente">Prezzo decrescente</option>
-        </select> 
-        <label for="ordineNome">Ordina per nome:</label> 
-        <select id="ordineNome">
-            <option value="a-z">A-Z</option>
-            <option value="z-a">Z-A</option>
-        </select>
-    `;
-    catalogo.appendChild(formOrdina);
-
-    var ordinePrezzoCorrente = sessionStorage.getItem('ordinePrezzo') || 'prezzocrescente';
-    var ordineNomeCorrente = sessionStorage.getItem('ordineNome') || 'a-z';
-    document.getElementById('ordinePrezzo').value = ordinePrezzoCorrente;
-    document.getElementById('ordineNome').value = ordineNomeCorrente;
-
-    document.getElementById('ordinePrezzo').addEventListener('change', function() {
-        var ordine = this.value;
-        sessionStorage.setItem('ordinePrezzo', ordine);
-        loadAjaxDoc('OrdinaElementi', 'POST', 'ordine=' + ordine, aggiornaCatalogo);
-    });
-
-    document.getElementById('ordineNome').addEventListener('change', function() {
-        var ordine = this.value;
-        sessionStorage.setItem('ordineNome', ordine);
-        loadAjaxDoc('OrdinaElementi', 'POST', 'ordine=' + ordine, aggiornaCatalogo);
-    });
-
     prodotti.forEach(function(prodotto) {
         var prodottoDiv = document.createElement('div');
         prodottoDiv.className = 'prodotto';
@@ -150,24 +116,38 @@ function aggiornaCatalogo(request) {
         prodottoDiv.appendChild(dettagliDiv);
         catalogo.appendChild(prodottoDiv);
     });
+
+    var formOrdina = document.createElement('form');
+    formOrdina.className = 'ordina';
+    formOrdina.innerHTML = `
+        <label for="ordine">Ordina :</label>
+        <select id="ordine">
+            <option value="a-z">A-Z</option>
+            <option value="z-a">Z-A</option>
+            <option value="prezzocrescente">Prezzo crescente</option>
+            <option value="prezzodecrescente">Prezzo decrescente</option>
+        </select>
+    `;
+    catalogo.prepend(formOrdina);
+
+    var ordine = document.getElementById('ordine');
+    var ordineCorrente = sessionStorage.getItem('ordine') || 'a-z';
+    ordine.value = ordineCorrente;
+    ordine.addEventListener('change', function() {
+        var ordine = this.value;
+        sessionStorage.setItem('ordine', ordine);
+        loadAjaxDoc('OrdinaElementi', 'POST', 'ordine=' + ordine, aggiornaCatalogo);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    var ordinePrezzo = document.getElementById('ordinePrezzo');
-    var ordineNome = document.getElementById('ordineNome');
-    var ordinePrezzoCorrente = sessionStorage.getItem('ordinePrezzo') || 'prezzocrescente';
-    var ordineNomeCorrente = sessionStorage.getItem('ordineNome') || 'a-z';
-    ordinePrezzo.value = ordinePrezzoCorrente;
-    ordineNome.value = ordineNomeCorrente;
-    ordinePrezzo.addEventListener('change', function() {
+    var ordine = document.getElementById('ordine');
+    var ordineCorrente = sessionStorage.getItem('ordine') || 'a-z';
+    ordine.value = ordineCorrente;
+    ordine.addEventListener('change', function() {
         var ordine = this.value;
-        sessionStorage.setItem('ordinePrezzo', ordine);
+        sessionStorage.setItem('ordine', ordine);
         loadAjaxDoc('OrdinaElementi', 'POST', 'ordine=' + ordine, aggiornaCatalogo);
     });
-    ordineNome.addEventListener('change', function() {
-        var ordine = this.value;
-        sessionStorage.setItem('ordineNome', ordine);
-        loadAjaxDoc('OrdinaElementi', 'POST', 'ordine=' + ordine, aggiornaCatalogo);
-    });
-    loadAjaxDoc('OrdinaElementi', 'POST', 'ordine=' + ordinePrezzoCorrente, aggiornaCatalogo);
+    loadAjaxDoc('OrdinaElementi', 'POST', 'ordine=' + ordineCorrente, aggiornaCatalogo);
 });

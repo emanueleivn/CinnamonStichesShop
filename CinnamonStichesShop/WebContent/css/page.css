@@ -315,6 +315,10 @@ button:hover {
 	width: 80%;
 	margin: 0 auto;
 	padding: 20px;
+	height: 400px;;
+}
+.container-account{
+	height:auto;
 }
 
 .container h2 {
@@ -348,14 +352,17 @@ button:hover {
 
 .container .bottoni {
 	display: flex;
-	justify-content: center;
 	gap: 20px;
 	margin-top: 20px;
+	flex-direction: column;
+	align-items:center;
 }
 
 .container .bottoni button {
+	margin:20px;
 	padding: 10px 20px;
 	font-size: 16px;
+	width: 300px;
 }
 
 .container tr:hover {
@@ -395,15 +402,15 @@ span .error-message {
 }
 
 @media ( max-width : 660px) {
-	#log-rev {
+	#log-reg {
 		width: 20%;
 		min-width: 200px;
 	}
-	#log-rev label {
+	#log-reg label {
 		font-size: 14px;
 	}
-	#sub {
-		width: 27%;
+	.sub {
+		width: 100%;
 		height: auto;
 		font-size: 14px;
 		margin-top: 20px;
@@ -438,4 +445,13 @@ span .error-message {
 	#im2 {
 		max-width: 90px;
 	}
+	.cart-content {
+	font-size:6px;
+	padding:0;
+	}
+	.container table{
+	font-size:10px;
+	}
+	
+	
 }

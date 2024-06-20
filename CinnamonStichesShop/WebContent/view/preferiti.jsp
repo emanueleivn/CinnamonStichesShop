@@ -10,6 +10,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/page.css">
+	<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/prodotto.css">
 </head>
 <%@include file="header.jsp"%>
 <body>
@@ -45,7 +47,7 @@
 				<td><%=product.getNome()%></td>
 				<td><%=product.getCosto()%></td>
 				<td>
-					<form action="${pageContext.request.contextPath}/Preferiti" method="post">
+					<form id="bottoniTabella" action="${pageContext.request.contextPath}/Preferiti" method="post">
 						<input type="hidden" name="actionFav"
 							value="remove">
 						<input type="hidden" name="codiceProdotto"
@@ -54,7 +56,7 @@
 					</form>
 				</td>
 				<td>
-					<form action="${pageContext.request.contextPath}/Preferiti" method="post">
+					<form id="bottoniTabella" action="${pageContext.request.contextPath}/Preferiti" method="post">
 					<input type="hidden" name="actionFav"
 							value="addCart">
 						<input type="hidden" name="codiceProdotto"

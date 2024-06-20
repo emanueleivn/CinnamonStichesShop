@@ -20,17 +20,13 @@
 	<h1>Prodotti del Catalogo</h1>
 	<div class="catalogo">
 			<form class="ordina">
-				<label for="ordinePrezzo">Ordina per prezzo:</label> 
-				<select id="ordinePrezzo">
+				<label for="ordina">Ordina :</label> 
+				<select id="ordine">
+					<option value="a-z">A-Z</option>
+					<option value="z-a">Z-A</option>
 					<option value="prezzocrescente">Prezzo crescente</option>
 					<option value="prezzodecrescente">Prezzo decrescente</option>
 				</select> 
-				
-				<label for="ordineNome">Ordina per nome:</label> 
-				<select id="ordineNome">
-					<option value="a-z">A-Z</option>
-					<option value="z-a">Z-A</option>
-				</select>
 			</form>
 		
 		<%
@@ -85,4 +81,5 @@
 
 <%@include file="footer.jsp"%>
 </html>
+
 

@@ -10,7 +10,6 @@
 </head>
 <%@include file="header.jsp" %>
 <body>
-    
     <div id="log-reg">
         <h4>Login</h4>
         <div id="login">

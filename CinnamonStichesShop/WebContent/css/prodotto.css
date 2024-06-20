@@ -76,7 +76,7 @@ button{
         margin-bottom: 10px;
     }
     .immagine img {
-        max-width: 150px;
+        width: 40px;
     }
     .action {
         flex-direction: column;
@@ -89,6 +89,7 @@ button{
     }
     .action form input[type="number"] {
         margin-right: 0;
+       
     }
     .action form button {
         width: 100%;
@@ -96,8 +97,18 @@ button{
     .catalogo label {
     font-size: x-small;
     }
-    .caralogo select{
+    .catalogo select{
     	width:30px;
     }
-    
+    #bottoniTabella button{
+	font-size:5px;
+	margin:0;
+}
+#bottoniSub button{
+	font-size:5px;
+}
+input{
+ 	 width:10px;
+	margin:0;
+}
 }

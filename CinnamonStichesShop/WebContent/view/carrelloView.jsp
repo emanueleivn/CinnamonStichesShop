@@ -41,13 +41,15 @@
 			<tr>
 				<td><%=product.getProdotto().getNome()%></td>
 				<td>
-				<div class="immagine">
-				<img src="${pageContext.request.contextPath}/images/products/<%=product.getProdotto().getImmagine()%>" alt="Immagine prodotto">
-				</div>
+					<div class="immagine">
+						<img
+							src="${pageContext.request.contextPath}/images/products/<%=product.getProdotto().getImmagine()%>"
+							alt="Immagine prodotto">
+					</div>
 				</td>
 				<td><%=product.getProdotto().getCosto()%></td>
 				<td>
-					<form action="${pageContext.request.contextPath}/Carrello"
+					<form id="bottoniTabella" action="${pageContext.request.contextPath}/Carrello"
 						method="POST">
 						<input type="hidden" name="codice"
 							value="<%=product.getProdotto().getCodice()%>" /> <input
@@ -71,11 +73,12 @@
 			Totale: <span id="totaleCarrello"><%=cart.getTotale()%></span>
 		</div>
 		<div class="bottoni">
-			<form action="${pageContext.request.contextPath}/EffettuaOrdine" method="POST">
+			<form id="bottoniSub" action="${pageContext.request.contextPath}/EffettuaOrdine"
+				method="POST">
 				<button type="submit">Acquista</button>
 			</form>
 
-			<form action="${pageContext.request.contextPath}/Carrello"
+			<form id="bottoniSub" action="${pageContext.request.contextPath}/Carrello"
 				method="POST">
 				<input type="hidden" name="action" value="delete" />
 				<button type="submit">Svuota Carrello</button>
@@ -85,6 +88,10 @@
 		}
 		%>
 	</div>
+	
+	
 </body>
+
 </html>
+
 

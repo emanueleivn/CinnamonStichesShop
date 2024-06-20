@@ -48,4 +48,8 @@
         </table>
     </div>
 </body>
+<footer style="flex:2;">
+<%@ include file="footer.jsp" %>
+</footer>
+
 </html>
