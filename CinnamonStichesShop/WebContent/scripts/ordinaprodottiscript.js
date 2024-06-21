@@ -99,7 +99,7 @@ function aggiornaCatalogo(request) {
         carrelloForm.innerHTML = 
             '<input type="hidden" name="action" value="add" />' +
             '<input type="hidden" name="codice" value="' + prodotto.codice + '" />' +
-            '<label for="quantita_' + prodotto.codice + '">Quantità:</label>' +
+            '<label for="quantita_' + prodotto.codice + '"><strong>Quantità</strong>:</label>' +
             '<input type="number" id="quantita_' + prodotto.codice + '" name="quantita_' + prodotto.codice + '" min="1" max="10" value="1" required>' +
             '<button type="submit">Aggiungi al Carrello</button>';
         actionDiv.appendChild(carrelloForm);

@@ -11,7 +11,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/page.css">
-
+<script type="text/javascript" src= "${pageContext.request.contextPath}/scripts/cercaOrdineCliente.js"></script>
+<script type="text/javascript" src= "${pageContext.request.contextPath}/scripts/cercaOrdine.js"></script>
 </head>
 <%@ include file="header.jsp"%>
 <body>
@@ -21,23 +22,27 @@
 			<form id="filterForm" action="${pageContext.request.contextPath}/admin/Ordini" method="POST">
 				<div id="date">
 					Filtra per data:&nbsp;<label for="filterDate1"> da: </label> 
-					<input type="date" id="filterDate1" name="filterDate1"> <label
+					<input type="date" id="filterDate1" name="filterDate1" required> <label
 						for="filterDate2">a: </label> 
-					<input type="date" id="filterDate2"	name="filterDate2">
+					<input type="date" id="filterDate2"	name="filterDate2" required">
 					<button type="submit" id="applyFilter">Applica Filtro</button>
 				</div>
 			</form>
 				<div id="cercaCliente">
 					<label for="inputCliente">Codice cliente:</label> <input type="text"
 						id="inputCliente" name="searchInput"
-						placeholder="Inserisci codice cliente">
-					<button>Cerca</button>
+						placeholder="Inserisci codice cliente" >
+					<button id="cercaClienteButton">Cerca</button>
 				</div>
 				<div id="cercaOrdine">
 					<label for="inputOrdine">Codice ordine:</label> <input type="text"
 						id="inputOrdine" name="searchInput"
 						placeholder="Inserisci codice ordine">
-					<button>Cerca</button>
+					<button id="cercaOrdineButton" >Cerca</button>
+					<form action="${pageContext.request.contextPath}/admin/PaginaAmministratore" method="POST">
+					<input type="hidden" name="azioneAdmin" value="showOrders"/>
+					<button type="submit">Tutti</button>
+					</form>
 				</div>
 		</div>
 

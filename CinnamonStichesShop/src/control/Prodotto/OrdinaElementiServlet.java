@@ -60,7 +60,6 @@ public class OrdinaElementiServlet extends HttpServlet {
 					break;
 				}
 			}
-
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			PrintWriter out = response.getWriter();
@@ -81,7 +80,7 @@ public class OrdinaElementiServlet extends HttpServlet {
 			out.flush();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Errore nel recupero dei prodotti.");
+			request.setAttribute("errorMessage", "Errore interno.");
+			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 		}
-	}
-}
+	}}

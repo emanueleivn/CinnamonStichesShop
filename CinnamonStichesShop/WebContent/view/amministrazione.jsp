@@ -15,19 +15,19 @@
 		<div class="bottoni">
 			<form
 				action="${pageContext.request.contextPath}/admin/PaginaAmministratore"
-				method="post">
+				method="POST">
 				<input type="hidden" name="azioneAdmin" value="modify" />
 				<button type="submit">Modifica catalogo</button>
 			</form>
 			<form
 				action="${pageContext.request.contextPath}/admin/PaginaAmministratore"
-				method="post">
+				method="POST">
 				<input type="hidden" name="azioneAdmin" value="showOrders"/>
 				<button type="submit">Visualizza ordini</button>
 			</form>
 			<form
 				action="${pageContext.request.contextPath}/admin/PaginaAmministratore"
-				method="post">
+				method="POST">
 				<input type="hidden" name="azioneAdmin" value="showUsers" />
 				<button type="submit">Visualizza utenti</button>
 			</form>

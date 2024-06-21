@@ -9,7 +9,7 @@
 .ordine-sezione {
     text-align: center;
     font-weight: bold;
-    margin-top: 20px;
+    margin: 0px auto 20px;
     display:block;
     align-items: flex-start;
 }
@@ -43,7 +43,7 @@
 			<tr>
 				<td><%=product.getProdotto().getCodice() %></td>
 				<td>
-				<div class="immagine">
+				<div class="immagine immagineTabella">
 				<img src="${pageContext.request.contextPath}/images/products/<%=product.getProdotto().getImmagine()%>" alt="Immagine prodotto">
 				</div>
 				</td>

@@ -57,8 +57,8 @@
 						method="post">
 						<input type="hidden" name="action" value="add" /> <input
 							type="hidden" name="codice" value="<%=prodotto.getCodice()%>" />
-						<label for="quantita_<%=prodotto.getCodice()%>">Quantità:</label>
-						<input type="number" id="quantita_<%=prodotto.getCodice()%>"
+						<label for="quantita_<%=prodotto.getCodice()%>"><strong>Quantità:</strong></label>
+						<input class="number" type="number" id="quantita_<%=prodotto.getCodice()%>"
 							name="quantita_<%=prodotto.getCodice()%>" min="1" max="10"
 							value="1" required>
 						<button type="submit">Aggiungi al Carrello</button>

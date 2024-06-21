@@ -22,7 +22,7 @@
         <label>Cognome</label>
         <input class="inp" type="text" id="surname" name="cognome" placeholder="Cognome" required maxlength="100" title="Inserire il cognome, max 50 parole" onblur="textValidate(this)">
         <span id="surname-error" class="error-message"></span>
-        <label>Indirizzo</label>
+        <label>Indirizzo spedizione</label>
         <input class="inp" type="text" id="via" name="via" placeholder="Via" required maxlength="50" onblur="textValidate(this)">
         <span id="via-error" class="error-message"></span>
         <label>Cap</label>

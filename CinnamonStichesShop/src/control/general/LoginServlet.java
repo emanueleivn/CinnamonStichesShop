@@ -1,4 +1,4 @@
-package control.Utente;
+package control.general;
 
 import java.io.IOException;
 
@@ -55,7 +55,6 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("isLogged", true);
                 session.setAttribute("isAdmin", user.getIsAdmin());           
                 session.setAttribute("user", user);
-                session.setAttribute("carrello", new Carrello());
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/view/index.jsp");
                 dispatcher.forward(request, response);
             } else {

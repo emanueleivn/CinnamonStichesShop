@@ -8,10 +8,11 @@
 <title>Preferiti</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/page.css">
+
 	<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/prodotto.css">
+	<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/page.css">
 </head>
 <%@include file="header.jsp"%>
 <body>
@@ -38,7 +39,7 @@
 			%>
 			<tr>
 				<td>
-					<div class="immagine">
+					<div class="immagine immagineTabella">
 						<img
 							src="${pageContext.request.contextPath}/images/products/<%= product.getImmagine() %>"
 							alt="Immagine Prodotto" />
@@ -56,12 +57,12 @@
 					</form>
 				</td>
 				<td>
-					<form id="bottoniTabella" action="${pageContext.request.contextPath}/Preferiti" method="post">
+					<form id="bottoniTabella" action="${pageContext.request.contextPath}/Preferiti" onsubmit="return verificaDisponibilità(<%=product.getIsDisp()%>"  method="post">
 					<input type="hidden" name="actionFav"
 							value="addCart">
 						<input type="hidden" name="codiceProdotto"
 							value="<%=product.getCodice()%>">
-						<button type="submit">Aggiungi al carrello</button>
+						<button type="submit" >Aggiungi al carrello</button>
 					</form>
 				</td>
 			</tr>
@@ -72,4 +73,13 @@
 		</table>
 	</div>
 </body>
+<script>
+function verificaDisponibilità(isDisp){
+	if(!isDisp){
+		alert("Prodotto non più disponibile per l'acquisto");
+		return false; 
+	}
+	return true; 
+}
+</script>
 </html>

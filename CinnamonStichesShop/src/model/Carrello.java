@@ -39,13 +39,20 @@ public class Carrello {
 	}
 
 	public void aggiungiAlCarrello(ProdottoCarrello p) {
+		if(prodottiCarrello.contains(p)) {
+				int quantità = prodottiCarrello.get(prodottiCarrello.indexOf(p)).getQuantita();
+				float tot =prodottiCarrello.get(prodottiCarrello.indexOf(p)).getTot();
+				prodottiCarrello.remove(p);
+				p.setQuantity(p.getQuantita()+quantità);
+				p.setTot(p.getTot()+tot);
+		}
 		prodottiCarrello.add(p);
-		totale += p.getProdotto().getCosto() * p.getQuantita();
+		totale += p.getTot();
 	}
 
 	public void rimuoviDalCarrello(ProdottoCarrello p) {
 		prodottiCarrello.remove(p);
-		totale -= p.getProdotto().getCosto() * p.getQuantita();
+		totale -= p.getTot();
 	}
 
 	public void setTotale(float tot) {
@@ -55,7 +62,7 @@ public class Carrello {
 	public float getTotale() {
 		float tot = 0;
 		for (ProdottoCarrello p : prodottiCarrello) {
-			tot += p.getProdotto().getCosto() * p.getQuantita();
+			tot += p.getTot();
 		}
 		return tot;
 	}

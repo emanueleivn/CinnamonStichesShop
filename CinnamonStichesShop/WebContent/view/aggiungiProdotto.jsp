@@ -21,14 +21,14 @@
                 <span id="nome-error" class="error-message"></span>
                 <label for="descrizione">Descrizione Prodotto</label>
                 <textarea class="inp" id="descrizione" name="descrizione"style="height:45px"
-                title="Inserire descrizione prodotto, max 200 parole" onblur="textValidate(this)" required ></textarea>
+                title="Inserire descrizione prodotto, max 200 parole" onblur="textAreaValidate(this)" required ></textarea>
                 <span id="descrizione-error" class="error-message"></span>
                 <label for="prezzo">Prezzo Prodotto</label>
-                <input class="inp" type="number" step="0.01" id="prezzo" name="prezzo" min="0.01" required>
-                
+                <input class="inp" type="number" step="0.01" id="prezzo" name="prezzo" min="0.01" onchange="prezzoValidate(this)" required>
+                <span id="prezzo-error" class="error-message"></span>
                 <label for="file">Immagine Prodotto (JPEG, PNG, GIF)</label>
                 <input class="inp" type="file" id="file" name="file" accept="image/png, image/gif, image/jpeg"
-                title="Inserire un immagine,estensione file accettati: png,jpeg,gif" required>
+                title="Inserire un immagine,estensione file accettati: png,jpeg,gif"  onchange="imgValidate(this)" required>
                
                 <button id="subProd" type="submit" value="Aggiungi Prodotto">Aggiungi Prodotto</button>
         </form>

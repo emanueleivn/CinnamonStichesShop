@@ -17,6 +17,10 @@
 		<error-code>500</error-code>
 		<location>/view/error.jsp</location>
 	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/view/error.jsp</location>
+	</error-page>
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>All</web-resource-name>

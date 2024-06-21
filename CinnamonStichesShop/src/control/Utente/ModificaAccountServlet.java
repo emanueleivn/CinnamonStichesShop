@@ -55,21 +55,24 @@ public class ModificaAccountServlet extends HttpServlet {
 		String città = request.getParameter("city");
 		String san = username + email + password + nome + cognome + via + cap + città;
 		try {
-			if (Sanitizer.sanitizeInput(san) && userDao.checkingUser(username) == null
-					&& userDao.checkingEmail(email) == null) {
-				Utente ut = new Utente();
-				ut.setNome(nome);
-				ut.setCognome(cognome);
-				ut.setUsername(username);
-				ut.setEmail(email);
-				ut.setPassword(Sanitizer.hashPassword(password));
-				ut.setVia(via);
-				ut.setCap(cap);
-				ut.setCittà(città);
-				ut.setIsAdmin(false);
+			if (!Sanitizer.sanitizeInput(san) || userDao.checkingUser(username.trim()) != null) {
+				String errorMessage = "I dati inseriti non rispettano il formato oppure l'username scelto è già utilizzato.";
+				request.setAttribute("errorMessage", errorMessage);
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+				return;
+			}else {
 				HttpSession session = request.getSession();
-				session.setAttribute("utente", ut);
+				Utente ut = (Utente)session.getAttribute("user");
+				ut.setNome(nome.trim());
+				ut.setCognome(cognome.trim());
+				ut.setUsername(username.trim());
+				ut.setEmail(email.trim());
+				ut.setPassword(Sanitizer.hashPassword(password.trim()));
+				ut.setVia(via.trim());
+				ut.setCap(cap.trim());
+				ut.setCittà(città.trim());
 				userDao.doUpdate(ut);
+				session.setAttribute("utente", ut);
 			}
 		} catch (SQLException e) {
 			String errorMessage = " Errore Generico, dati inseriti non accettabili";
@@ -78,7 +81,7 @@ public class ModificaAccountServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			return;
 		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/index.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/account.jsp");
 		dispatcher.forward(request, response);
 
 	}

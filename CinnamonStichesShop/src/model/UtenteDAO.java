@@ -81,7 +81,7 @@ public class UtenteDAO {
 		try {
 			connection = ds.getConnection();
 			ps = connection.prepareStatement(
-					"UPDATE utente SET nome = ?, cognome = ?, email = ?, pass = ?, via = ?, cap = ?, citta = ? WHERE username = ?");
+					"UPDATE utente SET nome = ?, cognome = ?, email = ?, pass = ?, via = ?, cap = ?, citta = ?,username = ? WHERE cod_ut = ?");
 			ps.setString(1, utente.getNome());
 			ps.setString(2, utente.getCognome());
 			ps.setString(3, utente.getEmail());
@@ -90,7 +90,8 @@ public class UtenteDAO {
 			ps.setString(6, utente.getCap());
 			ps.setString(7, utente.getCittà());
 			ps.setString(8, utente.getUsername());
-
+			ps.setInt(9, utente.getId());
+			System.out.println(utente.getId());
 			if (ps.executeUpdate() != 1) {
 				throw new Exception("Errore aggiornamento utente");
 			}

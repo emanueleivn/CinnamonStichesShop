@@ -67,9 +67,17 @@ public class PreferitiDAO {
 		ArrayList<Prodotto> preferiti = new ArrayList<>();
 		try {
 			connection = ds.getConnection();
-			ps = connection.prepareStatement("INSERT INTO preferiti (idUtente,idProdotto) VALUES (?,?)");
+			ps = connection.prepareStatement( "INSERT INTO preferiti (idUtente, idProdotto) " +
+				    "SELECT ?, ? " +
+				    "WHERE NOT EXISTS (" +
+				    "    SELECT 1 " +
+				    "    FROM preferiti " +
+				    "    WHERE idUtente = ? AND idProdotto = ?" +
+				    ");");
 			ps.setInt(1, idUtente);
 			ps.setInt(2, idProdotto);
+			ps.setInt(3, idUtente);
+			ps.setInt(4, idProdotto);
 			if (ps.executeUpdate() != 1)
 				throw new Exception("Errore INSERT INTO");
 		} catch (Exception e) {

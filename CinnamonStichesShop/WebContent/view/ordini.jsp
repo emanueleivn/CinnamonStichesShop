@@ -42,7 +42,7 @@
                     <td>
                     <form action="${pageContext.request.contextPath}/DettagliOrdine" method="post">
                     	<input type="hidden" name="codice" value="<%=ordine.getCodiceOrdine()%>"/>
-                    	<button id="dettagli-ordine" type="submit">Dettagli ordine...</button>
+                    	<button id="dettagli-ordine" type="submit">Dettagli</button>
                     </form>
                     </td>
                 </tr>

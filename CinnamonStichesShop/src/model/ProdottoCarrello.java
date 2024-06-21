@@ -28,7 +28,7 @@ public class ProdottoCarrello {
 	}
 
 	public float getTot() {
-		return tot;
+		return prodotto.getCosto() * quantity;
 	}
 
 	public void setTot(float tot) {

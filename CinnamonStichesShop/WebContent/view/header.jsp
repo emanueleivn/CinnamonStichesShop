@@ -22,7 +22,7 @@
             <li class="menu-item"><a href="${pageContext.request.contextPath}/HomePage">Home</a></li>
             <li class="menu-item">
                 <% if (session.getAttribute("isLogged") == null || (Boolean) session.getAttribute("isLogged")==false) { %>
-                    <a href="<%= request.getContextPath() %>/Login">Profilo</a>
+                    <a href="<%= request.getContextPath() %>/Login">Accedi</a>
                 <% } else { %>
                     <a href="${pageContext.request.contextPath}/Account">Profilo</a>
                 <% } %>

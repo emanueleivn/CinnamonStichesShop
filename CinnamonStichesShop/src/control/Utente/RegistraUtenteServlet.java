@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import model.Carrello;
 import model.Sanitizer;
 import model.Utente;
 import model.UtenteDAO;
@@ -60,18 +61,20 @@ public class RegistraUtenteServlet extends HttpServlet {
 			if (Sanitizer.sanitizeInput(san) && userDao.checkingUser(username) == null
 					&& userDao.checkingEmail(email) == null) {
 				Utente ut = new Utente();
-				ut.setNome(nome);
-				ut.setCognome(cognome);
-				ut.setUsername(username);
-				ut.setEmail(email);
-				ut.setPassword(Sanitizer.hashPassword(password));
-				ut.setVia(via);
-				ut.setCap(cap);
-				ut.setCittà(città);
+				ut.setNome(nome.trim());
+				ut.setCognome(cognome.trim());
+				ut.setUsername(username.trim());
+				ut.setEmail(email.trim());
+				ut.setPassword(Sanitizer.hashPassword(password.trim()));
+				ut.setVia(via.trim());
+				ut.setCap(cap.trim());
+				ut.setCittà(città.trim());
 				ut.setIsAdmin(false);
 				HttpSession session = request.getSession();
-				session.setAttribute("utente", ut);
-				session.setAttribute("Loggato", true);
+				session.setAttribute("isLogged", true);
+				session.setAttribute("isAdmin", ut.getIsAdmin());
+				session.setAttribute("user", ut);
+				session.setAttribute("carrello", new Carrello());
 
 				userDao.doSave(ut);
 			}
