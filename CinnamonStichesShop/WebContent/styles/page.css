@@ -250,7 +250,7 @@ body {
 }
 
 .cart-content .carrello-table {
-	width: 80%;
+	width: 60%;
 	margin: 20px auto;
 	border-collapse: collapse;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -259,13 +259,13 @@ body {
 .cart-content .carrello-table th {
 	background-color: #AEA9BF;
 	color: white;
-	padding: 10px;
-	text-align: left;
+	padding: 5px;
+	text-align: center;
 }
 
 .cart-content .carrello-table td {
 	background-color: white;
-	padding: 10px;
+	padding: 5px;
 	border: 1px solid #ddd;
 	text-align: center;
 }
@@ -535,6 +535,10 @@ span .error-message {
     #subProd{
     	font-size:16px;
     }
+    .cart-content .utenti-table td, th {
+		padding: 6px;
+		font-size: 8px;
+	}
 }
 
 @media ( max-width : 450px) {
@@ -555,7 +559,7 @@ span .error-message {
 	}
 	.cart-content .ordine-table td, .cart-content .ordine-table th{
 		padding: 5px;
-		font-size:7px;
+		font-size:6px;
 	}
 	.filter-form {
         display: flex;

@@ -10,13 +10,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/styles/prodotto.css">
+<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/styles/page.css">
 </head>
 
 <%@ include file="header.jsp"%>
 <body>
 	<div class="cart-content">
-		<table class="carrello-table ordine-table">
+		<table class="carrello-table ordine-table utenti-table">
 			<tr>
 				<th>Codice utente</th>
 				<th>Username</th>

@@ -80,7 +80,7 @@
 						<input type="hidden" name="codice"
 							value="<%=ordine.getCodiceOrdine()%>" />
 						<button id="dettagli-ordine" type="submit">Dettagli
-							ordine...</button>
+							ordine</button>
 					</form>
 				</td>
 			</tr>
