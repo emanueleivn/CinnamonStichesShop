@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cinnamon Stitches Shop</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/footer.css">
 </head>
 <body>
     <footer>

@@ -16,25 +16,28 @@
 </style>
 <meta charset="UTF-8">
 <title>Dettagli ordine</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/page.css">
 </head>
 <%@include file="header.jsp"%>
 <body>
+<%Ordine ordine = (Ordine) request.getAttribute("ordine");%>
 	<div class="cart-content">
 		<table class="carrello-table dettagliTable">
+		<caption style="caption-side: bottom; margin-top:10px; font-weight: bold;">
+		Totale : <%=ordine.getTot()/2%>
+		</caption>
 			<tr>
 				<th>Codice Prodotto</th>
 				<th></th>
 				<th>Nome</th>
 				<th>Quantità</th>
-				<th>Totale</th>
 			</tr>
 			<%
 			List<ProdottoCarrello> lista = (List<ProdottoCarrello>) request.getAttribute("prodottiOrdine");
 			if (lista == null) {
 			%>
 			<tr>
-				<td colspan="5" style="text-align: center">Nessun prodotto ordinato</td>
+				<td colspan="4" style="text-align: center">Nessun prodotto ordinato</td>
 			</tr>
 			<%
 			} else {
@@ -49,7 +52,6 @@
 				</td>
 				<td><%=product.getProdotto().getNome()%></td>
 				<td><%=product.getQuantita() %></td>
-				<td><%=product.getTot()%></td>
 			</tr>
 			<%
 			}
@@ -58,11 +60,10 @@
 		
 	</div>
 	<section class="ordine-sezione">
-		<%Ordine ordine = (Ordine) request.getAttribute("ordine");%>
+	<%Utente utente = (Utente) request.getAttribute("utente");%>
+		Cliente : <%=utente.getNome()%>&nbsp;<%=utente.getCognome()%><br> 
 		Indirizzo : <%=ordine.getIndirizzoSpedizione() %><br>
-		Data: <%=ordine.getData()%><br>
-		Codice Cliente: <%=ordine.getIdCliente()%><br>
-		
+		Data: <%=ordine.getData()%><br><br>		
 	</section>
 	<%
 		}

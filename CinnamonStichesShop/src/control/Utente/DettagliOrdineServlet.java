@@ -13,6 +13,8 @@ import javax.sql.DataSource;
 
 import model.Ordine;
 import model.OrdineDAO;
+import model.Utente;
+import model.UtenteDAO;
 
 /**
  * Servlet implementation class DettagliOrdineServlet
@@ -46,7 +48,10 @@ public class DettagliOrdineServlet extends HttpServlet {
 		OrdineDAO oDao = new OrdineDAO(ds);
 		try {
 			Ordine ordine = oDao.doRetriveByCodiceOrdine(Integer.parseInt(codice));
+			UtenteDAO u = new UtenteDAO(ds);
+			Utente utente = u.doRetrieveById(ordine.getIdCliente());
 			request.setAttribute("ordine", ordine);
+			request.setAttribute("utente", utente);
 			request.setAttribute("prodottiOrdine", ordine.getProdotti());
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/view/dettagliOrdine.jsp");
 			dispatcher.forward(request, response);

@@ -10,9 +10,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/prodotto.css">
+	href="${pageContext.request.contextPath}/styles/prodotto.css">
 	<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/page.css">
+	href="${pageContext.request.contextPath}/styles/page.css">
+	<script src="${pageContext.request.contextPath}/scripts/verificaDisponibilità.js"></script>
 </head>
 <%@include file="header.jsp"%>
 <body>
@@ -57,7 +58,7 @@
 					</form>
 				</td>
 				<td>
-					<form id="bottoniTabella" action="${pageContext.request.contextPath}/Preferiti" onsubmit="return verificaDisponibilità(<%=product.getIsDisp()%>"  method="post">
+					<form id="bottoniTabella" action="${pageContext.request.contextPath}/Preferiti" onsubmit="return verificaDisponibilità('<%=product.getCodice()%>',this);"  method="post">
 					<input type="hidden" name="actionFav"
 							value="addCart">
 						<input type="hidden" name="codiceProdotto"
@@ -73,13 +74,4 @@
 		</table>
 	</div>
 </body>
-<script>
-function verificaDisponibilità(isDisp){
-	if(!isDisp){
-		alert("Prodotto non più disponibile per l'acquisto");
-		return false; 
-	}
-	return true; 
-}
-</script>
 </html>

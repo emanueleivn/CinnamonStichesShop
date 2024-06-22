@@ -202,7 +202,7 @@ public class ProdottoDAO {
 				prodotto.setCosto(rs.getFloat("costo"));
 				prodotto.setDescrizione(rs.getString("descrizione"));
 				prodotto.setIdCategoria(rs.getInt("categoria"));
-				prodotto.setIsDisp(true);
+				prodotto.setIsDisp(rs.getBoolean("isDisponibile"));
 				prodotto.setImmagine(rs.getString("immagine"));
 			}
 		} catch (Exception e) {

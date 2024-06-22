@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>About Us</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/page.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <%@include file="header.jsp"%>

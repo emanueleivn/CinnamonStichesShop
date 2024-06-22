@@ -8,9 +8,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/page.css">
+	href="${pageContext.request.contextPath}/styles/page.css">
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/prodotto.css">
+	href="${pageContext.request.contextPath}/styles/prodotto.css">
 <title>Modifica Catalogo</title>
 </head>
 <%@include file="header.jsp"%>

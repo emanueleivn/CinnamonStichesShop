@@ -81,3 +81,15 @@ function handleResponse(request) {
 		alert('Errore nell\'aggiornamento della quantità');
 	}
 }
+function verificaDisponibilità(form) {
+    var params = 'action=checkCart';
+    loadAjaxDoc('VerificaCarrelloServlet', "POST", params, function(request) {
+        var response = JSON.parse(request.responseText);
+        if (response.check) {
+            form.submit();
+        } else {
+            alert("Prodotti non più disponibili per l'acquisto: \n" + response.nomi);
+        }
+    });
+    return false;
+}

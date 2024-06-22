@@ -154,7 +154,7 @@ public class UtenteDAO {
 		Utente utente = null;
 		try {
 			connection = ds.getConnection();
-			ps = connection.prepareStatement("SELECT * FROM utente WHERE idUtente = ?");
+			ps = connection.prepareStatement("SELECT * FROM utente WHERE cod_ut = ?");
 			ps.setInt(1, idUtente);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {

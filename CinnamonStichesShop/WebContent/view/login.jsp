@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/page.css">
     <script src="${pageContext.request.contextPath}/scripts/validate.js"></script>
 </head>
 <%@include file="header.jsp" %>

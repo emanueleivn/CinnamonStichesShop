@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="initial-scale=1,width=device-width">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/page.css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
 <title>CinnamonStichesShop</title>

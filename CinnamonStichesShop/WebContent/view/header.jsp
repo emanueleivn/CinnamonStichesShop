@@ -8,7 +8,7 @@
     <title>CinnamonStichesShop</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="${pageContext.request.contextPath}/images/icone/logo.ico">
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/styles/header.css">
 </head>
 <body>
     <div class="navbar">
