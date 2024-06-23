@@ -34,8 +34,12 @@ public class RedirectAccount extends HttpServlet {
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/login.jsp");
 			dispatcher.forward(request, response);
 			return;
+		}else if(session != null && Boolean.TRUE.equals(session.getAttribute("isLogged"))) {
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/account.jsp");
+			dispatcher.forward(request, response);
+			return;
 		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/account.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view/error.jsp");
 		dispatcher.forward(request, response);
 	}
 

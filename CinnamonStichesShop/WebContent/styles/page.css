@@ -8,8 +8,11 @@ body {
 	background-color: white;
 	padding: 0;
 	margin: 0;
+	min-height: 100%
 }
-
+input{
+	outline:none;
+}
 .prodotti-shuffle {
 	width: auto;
 	height: 340px;
@@ -246,7 +249,7 @@ body {
 	justify-content: center;
 	padding: 20px;
 	height: 100%;
-	margin: 90px auto 150px;
+	margin: 90px auto 162px;
 }
 
 .cart-content .carrello-table {

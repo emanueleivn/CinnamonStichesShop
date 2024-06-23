@@ -18,6 +18,7 @@ import model.Carrello;
 import model.Prodotto;
 import model.ProdottoCarrello;
 import model.ProdottoDAO;
+import model.Utente;
 
 /**
  * Servlet implementation class VerificaCarrelloServlet

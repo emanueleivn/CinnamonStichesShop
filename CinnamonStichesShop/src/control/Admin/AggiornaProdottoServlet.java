@@ -70,9 +70,9 @@ public class AggiornaProdottoServlet extends HttpServlet {
 			try {
 				ProdottoDAO pDao = new ProdottoDAO((DataSource) getServletContext().getAttribute("DataSource"));
 				Prodotto p = pDao.doRetrieveById(Integer.parseInt(codice));
-				p.setNome(nome);
+				p.setNome(nome.trim());
 				p.setCosto(Float.parseFloat(prezzo));
-				p.setDescrizione(descrizione);
+				p.setDescrizione(descrizione.trim());
 				p.setImmagine(path);
 				pDao.doUpdate(p);
 				List<Prodotto> prodotti = pDao.doRetrieveAll();

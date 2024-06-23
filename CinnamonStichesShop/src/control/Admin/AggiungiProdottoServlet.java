@@ -69,9 +69,9 @@ public class AggiungiProdottoServlet extends HttpServlet {
 			try {
 				ProdottoDAO pDao = new ProdottoDAO((DataSource) getServletContext().getAttribute("DataSource"));
 				Prodotto p = new Prodotto();
-				p.setNome(nome);
+				p.setNome(nome.trim());
 				p.setCosto(Float.parseFloat(prezzo));
-				p.setDescrizione(descrizione);
+				p.setDescrizione(descrizione.trim());
 				p.setIsDisp(true);
 				p.setImmagine(path);
 				pDao.doSave(p);

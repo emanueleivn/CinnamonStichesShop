@@ -24,7 +24,7 @@ body {
 	align-items: center;
 	margin-bottom: 20px;
 	padding: 10px;
-	width: 80%;
+	width: 70%;
 	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 	border-radius: 5px;
 }
@@ -45,11 +45,13 @@ h1 {
 }
 
 .immagine img {
-	max-width: 100px;
-	height: auto;
+	max-width: none;
+	height: 150px;
+	width:100px;
 	border: thin;
 	border-radius: 5px;
 	display: block;
+	object-fit:cover;
 }
 
 .dettagli {
@@ -66,8 +68,9 @@ button {
 }
 
 .immagine {
-	flex: 0 0 auto;
+	flex: 0;
 	margin-right: 20px;
+	margin-left:20px;
 }
 @media ( max-width : 450px) {
 	.immagineTabella img{
@@ -86,8 +89,6 @@ button {
 		margin-bottom: 10px;
 	}
 	.immagine img {
-		max-width: 200px;
-		height: auto;
 		border: thin;
 		border-radius: 5px;
 		display: block;

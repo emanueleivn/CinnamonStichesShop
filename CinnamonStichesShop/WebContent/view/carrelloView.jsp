@@ -10,8 +10,10 @@
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/styles/prodotto.css">
-	<link rel="stylesheet" type="text/css"
+<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/styles/page.css">
+
+
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/scripts/carrelloscript.js"></script>
 </head>
@@ -50,12 +52,12 @@
 				</td>
 				<td><%=product.getProdotto().getCosto()%></td>
 				<td>
-					<form id="bottoniTabella" action="${pageContext.request.contextPath}/Carrello"
-						method="POST">
+					<form id="bottoniTabella"
+						action="${pageContext.request.contextPath}/Carrello" method="POST">
 						<input type="hidden" name="codice"
 							value="<%=product.getProdotto().getCodice()%>" /> <input
 							type="hidden" name="action" value="remove" />
-						<button type="submit" style="margin:0">Rimuovi</button>
+						<button type="submit" style="margin: 0">Rimuovi</button>
 					</form>
 				</td>
 				<td><input type="number"
@@ -73,22 +75,40 @@
 		<div class="totale-carrello">
 			Totale: <span id="totaleCarrello"><%=cart.getTotale()%></span>
 		</div>
-		<div class="bottoni" style="margin:0" >
-			<form id="bottoniTabella" action="${pageContext.request.contextPath}/EffettuaOrdine"
-				method="POST" onsubmit="return verificaDisponibilità(this)">
-				<button  type="submit">Acquista</button>
-			</form>
-
-			<form id="bottoniTabella" action="${pageContext.request.contextPath}/Carrello"
+		<div class="bottoni" style="margin: 0">
+			<%
+			Utente user = (Utente) session.getAttribute("user");
+			if (user == null) {
+			%>
+			<form id="bottoniTabella"
+				action="${pageContext.request.contextPath}/EffettuaOrdine"
 				method="POST">
+				<button type="submit">Acquista</button>
+			</form>
+			<%
+			} else {
+			%>
+			<form id="bottoniTabella"
+				action="${pageContext.request.contextPath}/EffettuaOrdine"
+				method="POST" onsubmit="return verificaDisponibilità(this)">
+				<button type="submit">Acquista</button>
+			</form>
+			<%
+			}
+			%>
+			<form id="bottoniTabella"
+				action="${pageContext.request.contextPath}/Carrello" method="POST">
 				<input type="hidden" name="action" value="delete" />
-				<button  type="submit">Svuota Carrello</button>
+				<button type="submit">Svuota Carrello</button>
 			</form>
 		</div>
-		<%
-		}
-		%>
 	</div>
+	<footer>
+		<%@ include file="footer.jsp"%>
+	</footer>
+	<%
+	}
+	%>
 </body>
 </html>
 

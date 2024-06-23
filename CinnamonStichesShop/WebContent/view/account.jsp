@@ -62,7 +62,7 @@
 		</form>
 		</div>
 	</div>
-	<%} else response.sendRedirect("/view/error.jsp");%>
+	<%} else response.sendRedirect("${pageContext.request.contextPath}/Login");%>
 	<%@include file="footer.jsp"%>
 </body>
 </html>

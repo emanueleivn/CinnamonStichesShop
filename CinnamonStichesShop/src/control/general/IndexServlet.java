@@ -37,7 +37,8 @@ public class IndexServlet extends HttpServlet {
 			session.setAttribute("isLogged", false);
 			
 		}
-		session.setAttribute("carrello", new Carrello());
+		if((Carrello)session.getAttribute("carrello")==null)
+			session.setAttribute("carrello", new Carrello());
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/view/index.jsp");
 		dispatcher.forward(request, response);
 	}

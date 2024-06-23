@@ -1,5 +1,5 @@
-const textRegEx = /^[a-zA-Z0-9\s]+$/;
-const textAreaRegEx = /^[a-zA-Z0-9\s,\.!?]+$/;
+const textAreaRegEx = /^[a-zA-Z0-9\s,\.!?éçòàùéè^()&$£€';":^]+$/;
+const textRegEx = /^[a-zA-Z0-9\s'àèòùìéçé]+$/;
 const emailRegEx = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/;
 const passwordRegEx = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])[A-Za-z0-9#?!@$%^&*-]{8,}$/;
 
@@ -19,7 +19,6 @@ function passwordMatchValidate(password, passwordR) {
 	var m = document.getElementById("errorMessage");
 	if (password != passwordR) {
 		m.style.color = "red";
-		m.innerHTML = "Le due password non corrispondono!";
 		showError(document.getElementById("passwordR"), "Le due password non corrispondono!");
 		return false;
 	}
@@ -33,6 +32,7 @@ function passwordValidate(input) {
 
 	if (!passwordResult) {
 		showError(input, "Password non valida! La password deve essere di almeno 8 caratteri, deve contenere un numero, una lettera maiuscola, una lettera minuscola e NESSUN carattere speciale.");
+		input.focus();
 		return false;
 	}
 	clearError(input);
@@ -43,7 +43,8 @@ function textValidate(input) {
 	const textResult = textRegEx.test(input.value);
 
 	if (!textResult) {
-		showError(input, "Formato errato caratteri consentiti: a-z A-Z 0-9");
+		showError(input, "Campo vuoto o Formato errato caratteri consentiti: a-z A-Z 0-9");
+		input.focus();
 		return false;
 	}
 	clearError(input);
@@ -53,7 +54,8 @@ function textAreaValidate(input) {
 	const textResult = textAreaRegEx.test(input.value);
 
 	if (!textResult) {
-		showError(input, "Formato errato sono consentite solo a-z A-Z 0-9  e i simboli , ? . !");
+		showError(input, "Campo vuoto o Formato errato sono consentite solo a-z A-Z 0-9  e i simboli ,?.:!;^()&$£€\"");
+		input.focus();
 		return false;
 	}
 	clearError(input);
@@ -64,7 +66,8 @@ function capValidate(input) {
 	const capResult = capRegEx.test(input.value);
 
 	if (!capResult) {
-		showError(input, "CAP non valido!");
+		showError(input, "Campo vuoto o CAP non valido!");
+		input.focus();
 		return false;
 	}
 	clearError(input);
@@ -75,7 +78,8 @@ function emailValidate(input) {
 	const emailResult = emailRegEx.test(input.value);
 
 	if (!emailResult) {
-		showError(input, "Email non valida!");
+		showError(input, "Campo vuoto o Email non valida!");
+		input.focus();
 		return false;
 	}
 	clearError(input);
@@ -85,6 +89,7 @@ function prezzoValidate(input) {
 	const n = input.value;
 	if(n<=0){
 		showError(input, "Inserire un numero >= 0");
+		input.focus();
 		return false;
 	}
 	clearError(input);
@@ -126,5 +131,6 @@ document.getElementById("RegForm").addEventListener("submit", function(event) {
 	if (!validate()) {
 		event.preventDefault();
 	}
-});
+}
+);
 

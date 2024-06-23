@@ -55,8 +55,8 @@ public class ModificaAccountServlet extends HttpServlet {
 		String città = request.getParameter("city");
 		String san = username + email + password + nome + cognome + via + cap + città;
 		try {
-			if (!Sanitizer.sanitizeInput(san) || userDao.checkingUser(username.trim()) != null) {
-				String errorMessage = "I dati inseriti non rispettano il formato oppure l'username scelto è già utilizzato.";
+			if (!Sanitizer.sanitizeInput(san)){
+				String errorMessage = "I dati inseriti non rispettano il formato";
 				request.setAttribute("errorMessage", errorMessage);
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 				return;

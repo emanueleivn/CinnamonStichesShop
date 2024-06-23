@@ -74,9 +74,13 @@ public class RegistraUtenteServlet extends HttpServlet {
 				session.setAttribute("isLogged", true);
 				session.setAttribute("isAdmin", ut.getIsAdmin());
 				session.setAttribute("user", ut);
-				session.setAttribute("carrello", new Carrello());
-
 				userDao.doSave(ut);
+			}else {
+				String errorMessage = "Username non disponibile.";
+				request.setAttribute("errorMessage", errorMessage);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/view/error.jsp");
+				dispatcher.forward(request, response);
+				return;
 			}
 		} catch (SQLException e) {
 			String errorMessage = " Errore Generico, dati inseriti non accettabili";

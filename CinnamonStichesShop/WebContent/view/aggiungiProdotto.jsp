@@ -17,14 +17,14 @@
         <form id="RegForm" action="${pageContext.request.contextPath}/admin/AggiungiProdotto" enctype="multipart/form-data" method="POST" onsubmit="return validate()" >
                 <label for="nome">Nome Prodotto</label>
                 <input class="inp" type="text" id="nome" name="nome" required autofocus
-                title="Inserire nome prodotto, max 50 parole" maxlength="50" onblur="textValidate(this)" required>
+                title="Inserire nome prodotto, max 50 parole" maxlength="50" oninput="textValidate(this)" required>
                 <span id="nome-error" class="error-message"></span>
                 <label for="descrizione">Descrizione Prodotto</label>
                 <textarea class="inp" id="descrizione" name="descrizione"style="height:45px"
-                title="Inserire descrizione prodotto, max 200 parole" onblur="textAreaValidate(this)" required ></textarea>
+                title="Inserire descrizione prodotto, max 200 parole" oninput="textAreaValidate(this)" required ></textarea>
                 <span id="descrizione-error" class="error-message"></span>
                 <label for="prezzo">Prezzo Prodotto</label>
-                <input class="inp" type="number" step="0.01" id="prezzo" name="prezzo" min="0.01" onchange="prezzoValidate(this)" required>
+                <input class="inp" type="number" step="0.01" id="prezzo" name="prezzo" min="0.01" oninput="prezzoValidate(this)" required>
                 <span id="prezzo-error" class="error-message"></span>
                 <label for="file">Immagine Prodotto (JPEG, PNG, GIF)</label>
                 <input class="inp" type="file" id="file" name="file" accept="image/png, image/gif, image/jpeg"

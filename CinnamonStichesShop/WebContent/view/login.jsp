@@ -9,14 +9,14 @@
     <script src="${pageContext.request.contextPath}/scripts/validate.js"></script>
 </head>
 <%@include file="header.jsp" %>
-<body>
+<body onload="document.getElementById('username').focus()">
     <div id="log-reg">
         <h4>Login</h4>
         <div id="login">
         <form action="${pageContext.request.contextPath}/Login" method="POST" onsubmit="return validate()">
             <label>Username</label>
             <input class="inp" type="text" id="username" name="user" placeholder="username" required 
-            pattern="[A-Za-z0-9]+" title="Caratteri consentiti A-Z,a-z,0-9" onblur="textValidate(this)"/>
+            pattern="[A-Za-z0-9]+" title="Caratteri consentiti A-Z,a-z,0-9" oninput="textValidate(this)"/>
             <span id="username-error" class="error-message"></span>
             <label>Password</label>
             <input class="inp" type="password" id="password" name="password" placeholder="password" required /> 

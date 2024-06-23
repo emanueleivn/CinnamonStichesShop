@@ -19,10 +19,10 @@
         		<input type="hidden" name="codice" value="${prodotto.codice}"/>
         		<label for="nome">Nome Prodotto</label>
                 <input class="inp" type="text" id="nome" name="nome" value="${prodotto.nome}"
-                title="Inserire nome prodotto, max 50 parole" maxlength="50" onblur="textValidate(this)" required>
+                title="Inserire nome prodotto, max 50 parole" maxlength="50" oninput="textValidate(this)" required>
                 <span id="nome-error" class="error-message"></span>
                 <label for="descrizione">Descrizione Prodotto</label>
-                <textarea class="inp" id="descrizione" name="descrizione" style="height:45px" title="Inserire descrizione prodotto, max 200 parole" onblur="textAreaValidate(this)" required >
+                <textarea class="inp" id="descrizione" name="descrizione" style="height:45px" title="Inserire descrizione prodotto, max 200 parole" oninput="textAreaValidate(this)" required >
                 ${prodotto.descrizione}
                 </textarea>
                 <span id="descrizione-error" class="error-message"></span>

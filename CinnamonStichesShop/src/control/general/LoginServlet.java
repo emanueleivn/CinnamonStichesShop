@@ -37,7 +37,10 @@ public class LoginServlet extends HttpServlet {
         UtenteDAO userDao = new UtenteDAO(ds);
         String username = request.getParameter("user");
         String password = request.getParameter("password");
-
+        if(username==null || password==null) {
+        	doGet(request, response);
+        	return;
+        }
         if (!Sanitizer.sanitizeInput(username) && Sanitizer.sanitizeInput(password)) {
             String errorMessage = " Caratteri inseriti non validi!";
             request.setAttribute("errorMessage", errorMessage);
